@@ -1,0 +1,7 @@
+.elements__item {
+    max-width: 282px;
+    overflow: hidden;
+    justify-self: center;
+    border-radius: 10px;
+    position: relative;
+}
