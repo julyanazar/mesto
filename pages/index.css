@@ -2,6 +2,7 @@
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__header/page__header.css);
+@import url(../blocks/page/__footer/page__footer.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/line/line.css);
@@ -22,3 +23,5 @@
 @import url(../blocks/elements/__item-img/elements__item-img.css);
 @import url(../blocks/elements/__item-text/elements__item-text.css);
 @import url(../blocks/elements/__item-like-button/elements__item-like-button.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
