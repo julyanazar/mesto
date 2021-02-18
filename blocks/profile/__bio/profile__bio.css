@@ -11,7 +11,7 @@
 } 
 
 @media (max-width: 500px) {
-    .profile_bio {
+    .profile__bio {
         margin-right: 0;
     }
 } 
