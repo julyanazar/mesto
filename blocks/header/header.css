@@ -4,7 +4,7 @@
     padding-bottom: 40px;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 430px) {
     .header {
         padding-top: 28px;
         padding-bottom: 42px;

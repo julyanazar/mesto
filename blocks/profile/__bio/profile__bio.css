@@ -1,0 +1,17 @@
+.profile__bio {
+   display: flex;
+}
+
+@media (max-width: 700px) {
+    .profile__bio {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-right: 20px;
+    }
+} 
+
+@media (max-width: 500px) {
+    .profile_bio {
+        margin-right: 0;
+    }
+} 
