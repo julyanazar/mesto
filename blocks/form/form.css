@@ -1,0 +1,18 @@
+.form {
+    max-width: 430px;
+    padding: 34px 36px 37px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background: #ffffff;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+@media (max-width: 580px) {
+    .form {
+        max-width: 282px;
+        padding: 25px 22px;
+    }
+}

@@ -22,12 +22,12 @@
                     <div class="profile__info">
                         <div class="profile__name">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
-                            <button class="profile__edit-button"></button>
+                            <button class="profile__edit-button" aria-label="edit-button"></button>
                         </div>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" aria-label="add-button"></button>
             </section>
 
             <section class="elements content__section">
@@ -38,14 +38,16 @@
                                 alt="Сентинский храм">
                             <figcaption class="elements__item-text">Карачаевск</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                     <li class="elements__item">
                         <figure class="elements__item-figure">
                             <img src="./images/elements-elbrus.jpg" class="elements__item-img" alt="Эльбрус на закате">
                             <figcaption class="elements__item-text">Гора Эльбрус</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                     <li class="elements__item">
                         <figure class="elements__item-figure">
@@ -53,14 +55,16 @@
                                 alt="Горный хребет Домбай">
                             <figcaption class="elements__item-text">Домбай</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                     <li class="elements__item">
                         <figure class="elements__item-figure">
                             <img src="./images/elements-elbrus.jpg" class="elements__item-img" alt="Эльбрус на закате">
                             <figcaption class="elements__item-text">Гора Эльбрус</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                     <li class="elements__item">
                         <figure class="elements__item-figure">
@@ -68,7 +72,8 @@
                                 alt="Горный хребет Домбай">
                             <figcaption class="elements__item-text">Домбай</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                     <li class="elements__item">
                         <figure class="elements__item-figure">
@@ -76,7 +81,8 @@
                                 alt="Сентинский храм">
                             <figcaption class="elements__item-text">Карачаево-что-то там лалала</figcaption>
                         </figure>
-                        <button class="elements__item-like-button elements__item-like-button_active"></button>
+                        <button class="elements__item-like-button elements__item-like-button_active"
+                            aria-label="like-button"></button>
                     </li>
                 </ul>
             </section>
@@ -86,6 +92,21 @@
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
     </div>
+
+    <div class="popup popup_opened">
+        <div class="popup__container">
+            <form class="form">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fieldset class="form__profile-info">
+                    <input class="form__input" type="text" name="name" placeholder="Имя">
+                    <input class="form__input" type="text" name="about" placeholder="О себе">
+                    <button type="submit" class="form__save-button">Сохранить</button>
+                </fieldset>
+                <button class="popup__close-button"></button>
+            </form>
+        </div>
+    </div>
+
 </body>
 
 </html>
