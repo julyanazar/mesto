@@ -10,7 +10,8 @@ let formInputAbout = document.querySelector('.form__input-about');
 
 let formElement = document.querySelector('.form');
 
-function togglePopupEdit() {
+function togglePopupEdit(evt) {
+    evt.preventDefault();
     if (!popup.classList.contains('popup_opened')) {
         formInputName.value = profileTitle.textContent;
         formInputAbout.value = profileSubtitle.textContent;
@@ -22,7 +23,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileTitle.textContent = formInputName.value;
     profileSubtitle.textContent =  formInputAbout.value;
-    togglePopupEdit(); 
+    togglePopupEdit(evt); 
 }
 
 editButton.addEventListener('click', togglePopupEdit);
