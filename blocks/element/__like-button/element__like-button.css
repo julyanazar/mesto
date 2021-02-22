@@ -1,21 +1,19 @@
-.elements__item-like-button {
+.element__like-button {
     background-image: url(../../../images/elements-like-button.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-color: #ffffff;
-    position: absolute;
-    bottom: 35px;
-    left: 240px;
     text-align: center;
     width: 22px;
     height: 19px;
     box-sizing: border-box;
     border: none;
     padding: 0;
+    margin: 5px 5px 0 0;
     cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
-.elements__item-like-button:hover {
+.element__like-button:hover {
     opacity: 0.5;
 }

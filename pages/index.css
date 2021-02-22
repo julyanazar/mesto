@@ -18,11 +18,12 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__items/elements__items.css);
-@import url(../blocks/elements/__item/elements__item.css);
-@import url(../blocks/elements/__item-figure/elements__item-figure.css);
-@import url(../blocks/elements/__item-img/elements__item-img.css);
-@import url(../blocks/elements/__item-text/elements__item-text.css);
-@import url(../blocks/elements/__item-like-button/elements__item-like-button.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__cover/element__cover.css);
+@import url(../blocks/element/__img/element__img.css);
+@import url(../blocks/element/__caption/element__caption.css);
+@import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
