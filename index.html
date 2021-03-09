@@ -101,16 +101,30 @@
         </footer>
     </div>
 
-    <div class="popup">
+    <div class="popup popup_profile_info">
         <div class="popup__container">
             <form class="form" name="edit-profile">
                 <h2 class="form__title">Редактировать профиль</h2>
-                <fieldset class="form__profile-info">
+                <fieldset class="form__inputs">
                     <input class="form__input form__input-name" type="text" name="name" placeholder="Имя">
                     <input class="form__input form__input-about" type="text" name="about" placeholder="О себе">
                     <button type="submit" class="form__save-button">Сохранить</button>
                 </fieldset>
                 <button class="popup__close-button" type="button" aria-label="закрыть окно редактирования информации профиля"></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup_card_add">
+        <div class="popup__container">
+            <form class="form" name="add-card">
+                <h2 class="form__title">Новое место</h2>
+                <fieldset class="form__inputs">
+                    <input class="form__input form__input-card-name" type="text" name="name" placeholder="Название">
+                    <input class="form__input form__input-src" type="text" name="about" placeholder="Ссылка на картинку">
+                    <button type="submit" class="form__save-button">Сохранить</button>
+                </fieldset>
+                <button class="popup__close-button" type="button" aria-label="закрыть окно добавления новый карточки"></button>
             </form>
         </div>
     </div>
