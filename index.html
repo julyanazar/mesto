@@ -22,7 +22,8 @@
                     <div class="profile__info">
                         <div class="profile__name">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
-                            <button class="profile__edit-button" type="button" aria-label="изменить информацию о себе в профиле"></button>
+                            <button class="profile__edit-button" type="button"
+                                aria-label="изменить информацию о себе в профиле"></button>
                         </div>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
@@ -31,74 +32,7 @@
             </section>
 
             <section class="elements content__section">
-                <ul class="elements__items">
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-karachaevsk.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Карачаевск</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-elbrus.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-dombay.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Домбай</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-elbrus.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-dombay.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Домбай</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <div class="element__cover">
-                            <img src="./images/elements-karachaevsk.jpg" class="element__img" alt="Сентинский храм">
-                        </div>
-                        <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
-                        <div class="element__caption">
-                            <h2 class="element__title">Карачаево Что-то там лалала</h2>
-                            <button class="element__like-button element__like-button_active" type="button"
-                                aria-label="лайкнуть изображение"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="elements__items"></ul>
             </section>
         </main>
 
@@ -106,6 +40,20 @@
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
     </div>
+
+    <template class="template">
+        <li class="element">
+            <div class="element__cover">
+                <img src="" class="element__img" alt="">
+            </div>
+            <button class="element__trash-button" type="button" aria-label="удалить каточку"></button>
+            <div class="element__caption">
+                <h2 class="element__title"></h2>
+                <button class="element__like-button element__like-button_active" type="button"
+                    aria-label="лайкнуть изображение"></button>
+            </div>
+        </li>
+    </template>
 
     <div class="popup popup_profile_info">
         <div class="popup__container">
@@ -116,7 +64,8 @@
                     <input class="form__input form__input-about" type="text" name="about" placeholder="О себе">
                     <button type="submit" class="form__save-button">Сохранить</button>
                 </fieldset>
-                <button class="popup__close-button" type="button" aria-label="закрыть окно редактирования информации профиля"></button>
+                <button class="popup__close-button" type="button"
+                    aria-label="закрыть окно редактирования информации профиля"></button>
             </form>
         </div>
     </div>
@@ -127,10 +76,12 @@
                 <h2 class="form__title">Новое место</h2>
                 <fieldset class="form__inputs">
                     <input class="form__input form__input-card-name" type="text" name="name" placeholder="Название">
-                    <input class="form__input form__input-src" type="text" name="about" placeholder="Ссылка на картинку">
+                    <input class="form__input form__input-src" type="text" name="about"
+                        placeholder="Ссылка на картинку">
                     <button type="submit" class="form__save-button">Сохранить</button>
                 </fieldset>
-                <button class="popup__close-button" type="button" aria-label="закрыть окно добавления новый карточки"></button>
+                <button class="popup__close-button" type="button"
+                    aria-label="закрыть окно добавления новый карточки"></button>
             </form>
         </div>
     </div>

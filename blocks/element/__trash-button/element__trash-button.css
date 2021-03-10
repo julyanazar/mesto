@@ -9,10 +9,8 @@
     border: none;
     padding: 0;
     cursor: pointer;
-
     position: absolute;
-    bottom: 330px;
-    left: 250px;
-   
+    top: 23.79px;
+    right: 16.28px;
     background-color: unset;
 }

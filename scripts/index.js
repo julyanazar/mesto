@@ -17,6 +17,36 @@ let formInputAbout = document.querySelector('.form__input-about');
 
 let formElement = document.querySelector('.form');
 
+const cardsContainer = document.querySelector('.elements__items');
+const templateElement = document.querySelector('.template');
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+
 function FillPopupEdit(evt) {
     evt.preventDefault();
     if (!popupProfileInfo.classList.contains('popup_opened')) {
@@ -57,8 +87,29 @@ function closePopupAddCard() {
     closePopup(popupCardAdd);
 }
 
+function createTaskDomNode(item) {
+    //рекурсивно клонируем содержимое тега template
+    const newItem = templateElement.content.cloneNode(true);
+    //записываем в название карточки name из массива initialCards
+    const elementTitle = newItem.querySelector('.element__title');
+    elementTitle.textContent = item.name;
+    //добавляем в src link из массива initialCards
+    const elementImg = newItem.querySelector('.element__img');
+    elementImg.src = item.link;
+    //добавляем в alt название карточки name из массива initialCards
+    elementImg.alt = item.name;
+
+    return newItem;
+}
+
+function renderCards() {
+    const result = initialCards.map(createTaskDomNode);
+    cardsContainer.append(...result);
+}
+
 editButton.addEventListener('click', FillPopupEdit);
 closeButtonInfo.addEventListener('click', closePopupEdit);
 addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
 formElement.addEventListener('submit', formSubmitHandler); 
+renderCards();
