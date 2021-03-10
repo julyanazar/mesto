@@ -15,7 +15,8 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 let formInputName = document.querySelector('.form__input-name');
 let formInputAbout = document.querySelector('.form__input-about');
 
-let formElement = document.querySelector('.form');
+let formEditElement = document.querySelector('.form__edit');
+const formAddElement = document.querySelector('.form__add');
 
 const cardsContainer = document.querySelector('.elements__items');
 const templateElement = document.querySelector('.template');
@@ -47,7 +48,7 @@ const initialCards = [
     }
   ];
 
-function FillPopupEdit(evt) {
+function fillPopupEdit(evt) {
     evt.preventDefault();
     if (!popupProfileInfo.classList.contains('popup_opened')) {
         formInputName.value = profileTitle.textContent;
@@ -107,9 +108,27 @@ function renderCards() {
     cardsContainer.append(...result);
 }
 
-editButton.addEventListener('click', FillPopupEdit);
+function addCardFormListener (evt) {
+    evt.preventDefault();
+    //получаем значение написанное в инпут названия карточки
+    const inputCardName = formAddElement.querySelector('.form__input-card-name');
+    const inputCardNameValue = inputCardName.value;
+    //получаем значение написанное в инпут ссылки на картинку
+    const inputImg = formAddElement.querySelector('.form__input-src');
+    const inputImgValue = inputImg.value;
+    //создаем новую карточку с полученными выше значениями и вставляем ее в начало
+    const newCard = createTaskDomNode({ name: inputCardNameValue, link: inputImgValue});
+    cardsContainer.prepend(newCard);
+    //обнуляем поля после ввода значений
+    inputCardName.value = '';
+    inputImg.value = '';
+    closePopupAddCard(evt);
+}
+
+editButton.addEventListener('click', fillPopupEdit);
 closeButtonInfo.addEventListener('click', closePopupEdit);
 addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
-formElement.addEventListener('submit', formSubmitHandler); 
+formEditElement.addEventListener('submit', formSubmitHandler); 
+formAddElement.addEventListener('submit', addCardFormListener);
 renderCards();
