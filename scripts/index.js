@@ -145,12 +145,12 @@ function addCardListeners(card) {
 function deleteCardHandler(evt) {
     const target = evt.target;
     const currentCard = target.closest('.element');
-    
+
     currentCard.remove();
 }
 
 function likeCardHandler(evt) {
-
+    evt.target.classList.toggle('element__like-button_active');
 }
 
 editButton.addEventListener('click', fillPopupEdit);
