@@ -1,24 +1,24 @@
-let popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
 
 const popupProfileInfo = document.querySelector('.popup_profile_info');
-let closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
+const closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
 
 const popupCardAdd = document.querySelector('.popup_card_add');
-let closeButtonAdd = popupCardAdd.querySelector('.popup__close-button');
+const closeButtonAdd = popupCardAdd.querySelector('.popup__close-button');
 
 const popupZoomImg = document.querySelector('.popup_zoom_img');
 const closeButtonZoom = popupZoomImg.querySelector('.popup__close-button');
 
-let editButton = document.querySelector('.profile__edit-button');
+const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
 
-let formInputName = document.querySelector('.form__input-name');
-let formInputAbout = document.querySelector('.form__input-about');
+const formInputName = document.querySelector('.form__input-name');
+const formInputAbout = document.querySelector('.form__input-about');
 
-let formEditElement = document.querySelector('.form__edit');
+const formEditElement = document.querySelector('.form__edit');
 const formAddElement = document.querySelector('.form__add');
 
 const cardsContainer = document.querySelector('.elements__items');
@@ -109,7 +109,6 @@ function createCardDomNode(item) {
       showPopupImg(item);
     });
     
-
     return newItem;
 }
 
@@ -183,7 +182,6 @@ addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
 formEditElement.addEventListener('submit', formSubmitHandler); 
 formAddElement.addEventListener('submit', addCardFormListener);
-//elementImg.addEventListener('click', showPopupImg);
 closeButtonZoom.addEventListener('click', closePopupImg);
 
 renderCards();
