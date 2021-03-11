@@ -55,10 +55,10 @@ const initialCards = [
 
 function fillPopupEdit(evt) {
     evt.preventDefault();
-    if (!popupProfileInfo.classList.contains('popup_opened')) {
-        formInputName.value = profileTitle.textContent;
-        formInputAbout.value = profileSubtitle.textContent;
-    }
+   
+    formInputName.value = profileTitle.textContent;
+    formInputAbout.value = profileSubtitle.textContent;
+
     showPopupEdit();
 }
 
@@ -66,7 +66,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileTitle.textContent = formInputName.value;
     profileSubtitle.textContent =  formInputAbout.value;
-    closePopupEdit(evt); 
+    closePopupEdit(); 
 }
 
 function showPopup(popup) {
