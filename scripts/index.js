@@ -6,6 +6,9 @@ let closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
 const popupCardAdd = document.querySelector('.popup_card_add');
 let closeButtonAdd = popupCardAdd.querySelector('.popup__close-button');
 
+const popupZoomImg = document.querySelector('.popup_zoom_img');
+const closeButtonZoom = popupZoomImg.querySelector('.popup__close-button');
+
 let editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 
@@ -20,6 +23,8 @@ const formAddElement = document.querySelector('.form__add');
 
 const cardsContainer = document.querySelector('.elements__items');
 const templateElement = document.querySelector('.template');
+
+const elementImg = document.querySelector('.element__img');
 
 const initialCards = [
     {
@@ -88,7 +93,7 @@ function closePopupAddCard() {
     closePopup(popupCardAdd);
 }
 
-function createTaskDomNode(item) {
+function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
     const newItem = templateElement.content.cloneNode(true);
     //записываем в название карточки name из массива initialCards
@@ -100,12 +105,17 @@ function createTaskDomNode(item) {
     //добавляем в alt название карточки name из массива initialCards
     elementImg.alt = item.name;
 
+    elementImg.addEventListener('click', () => {
+      showPopupImg(item);
+    });
+    
+
     return newItem;
 }
 
 function renderCards() {
     const result = initialCards.map(function(item) {
-        const newCard = createTaskDomNode(item);
+        const newCard = createCardDomNode(item);
         addCardListeners(newCard);
         return newCard;
     });
@@ -121,7 +131,7 @@ function addCardFormListener (evt) {
     const inputImg = formAddElement.querySelector('.form__input-src');
     const inputImgValue = inputImg.value;
     //создаем новую карточку с полученными выше значениями 
-    const newCard = createTaskDomNode({ name: inputCardNameValue, link: inputImgValue});
+    const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue});
 
     //вызываем функцию с операциями навешивания слушателей и передаем туда нашу домноду
     addCardListeners(newCard);
@@ -153,10 +163,27 @@ function likeCardHandler(evt) {
     evt.target.classList.toggle('element__like-button_active');
 }
 
+function showPopupImg(item) {
+  const title = popupZoomImg.querySelector('.popup__title');
+  const image = popupZoomImg.querySelector('.popup__img');
+
+  title.textContent = item.name;
+  image.src = item.link;
+
+  showPopup(popupZoomImg);
+}
+
+function closePopupImg() {
+  closePopup(popupZoomImg);
+}
+
 editButton.addEventListener('click', fillPopupEdit);
 closeButtonInfo.addEventListener('click', closePopupEdit);
 addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
 formEditElement.addEventListener('submit', formSubmitHandler); 
 formAddElement.addEventListener('submit', addCardFormListener);
+//elementImg.addEventListener('click', showPopupImg);
+closeButtonZoom.addEventListener('click', closePopupImg);
+
 renderCards();
