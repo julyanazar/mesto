@@ -18,8 +18,8 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const formInputName = document.querySelector('.form__input-name');
 const formInputAbout = document.querySelector('.form__input-about');
 
-const formEditElement = document.querySelector('.form__edit');
-const formAddElement = document.querySelector('.form__add');
+const formEditElement = document.querySelector('.form_edit');
+const formAddElement = document.querySelector('.form_add');
 
 const cardsContainer = document.querySelector('.elements__items');
 const templateElement = document.querySelector('.template');
