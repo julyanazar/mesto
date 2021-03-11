@@ -168,6 +168,7 @@ function showPopupImg(item) {
 
   title.textContent = item.name;
   image.src = item.link;
+  image.alt = item.name;
 
   showPopup(popupZoomImg);
 }
