@@ -1,4 +1,4 @@
-const popup = document.querySelector('.popup');
+const popupForAll = document.querySelector('.popup');
 
 const popupProfileInfo = document.querySelector('.popup_profile_info');
 const closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
