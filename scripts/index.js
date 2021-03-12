@@ -105,6 +105,13 @@ function createCardDomNode(item) {
     //добавляем в alt название карточки name из массива initialCards
     elementImg.alt = item.name;
 
+    //добавляем слушатели карточке
+    const deleteButton = newItem.querySelector('.element__trash-button');
+    deleteButton.addEventListener('click', deleteCardHandler);
+    
+    const likeButton = newItem.querySelector('.element__like-button');
+    likeButton.addEventListener('click', likeCardHandler);
+
     elementImg.addEventListener('click', () => {
       showPopupImg(item);
     });
@@ -115,7 +122,6 @@ function createCardDomNode(item) {
 function renderCards() {
     const result = initialCards.map(function(item) {
         const newCard = createCardDomNode(item);
-        addCardListeners(newCard);
         return newCard;
     });
     cardsContainer.append(...result);
@@ -131,24 +137,12 @@ function addCardFormListener (evt) {
     const inputImgValue = inputImg.value;
     //создаем новую карточку с полученными выше значениями 
     const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue});
-
-    //вызываем функцию с операциями навешивания слушателей и передаем туда нашу домноду
-    addCardListeners(newCard);
-
     //вставляем карточку в начало
     cardsContainer.prepend(newCard);
     //обнуляем поля после ввода значений
     inputCardName.value = '';
     inputImg.value = '';
     closePopupAddCard(evt);
-}
-
-function addCardListeners(card) {
-    const deleteButton = card.querySelector('.element__trash-button');
-    deleteButton.addEventListener('click', deleteCardHandler);
-    
-    const likeButton = card.querySelector('.element__like-button');
-    likeButton.addEventListener('click', likeCardHandler);
 }
 
 function deleteCardHandler(evt) {
