@@ -26,7 +26,7 @@ const templateElement = document.querySelector('.template');
 
 const elementImg = document.querySelector('.element__img');
 
-function fillPopupEdit(evt) {
+function openPopupEdit(evt) {
     evt.preventDefault();
    
     formInputName.value = profileTitle.textContent;
@@ -144,7 +144,7 @@ function closePopupImg() {
   closePopup(popupZoomImg);
 }
 
-editButton.addEventListener('click', fillPopupEdit);
+editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', closePopupEdit);
 addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
