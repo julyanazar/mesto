@@ -33,7 +33,7 @@ function openPopupEdit() {
     showPopup(popupProfileInfo);
 }
 
-function formSubmitHandler (evt) {
+function handleProfileSubmit (evt) {
     evt.preventDefault();
     profileTitle.textContent = formInputName.value;
     profileSubtitle.textContent =  formInputAbout.value;
@@ -142,7 +142,7 @@ editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', closePopupEdit);
 addCardButton.addEventListener('click', showPopupAddCard)
 closeButtonAdd.addEventListener('click', closePopupAddCard);
-formEditElement.addEventListener('submit', formSubmitHandler); 
+formEditElement.addEventListener('submit', handleProfileSubmit); 
 formAddElement.addEventListener('submit', addCardFormListener);
 closeButtonZoom.addEventListener('click', closePopupImg);
 
