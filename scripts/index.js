@@ -81,12 +81,12 @@ function createCardDomNode(item) {
     return newItem;
 }
 
-function renderCards() {
-    const result = initialCards.map(function(item) {
+function renderCards(cards, container) {
+    const result = cards.map(function(item) {
         const newCard = createCardDomNode(item);
         return newCard;
     });
-    cardsContainer.append(...result);
+    container.append(...result);
 }
 
 function addCardFormListener (evt) {
@@ -138,4 +138,4 @@ formEditElement.addEventListener('submit', handleProfileSubmit);
 formAddElement.addEventListener('submit', addCardFormListener);
 closeButtonZoom.addEventListener('click', closePopupImg);
 
-renderCards();
+renderCards(initialCards, cardsContainer);
