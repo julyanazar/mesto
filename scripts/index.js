@@ -108,8 +108,7 @@ function addCardFormListener (evt) {
     //вставляем карточку в начало
     cardsContainer.prepend(newCard);
     //обнуляем поля после ввода значений
-    inputCardName.value = '';
-    inputImg.value = '';
+    document.querySelector('.form_add').reset();
     closePopupAddCard(evt);
 }
 
