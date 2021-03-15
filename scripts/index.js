@@ -30,7 +30,7 @@ function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
 
-    showPopupEdit();
+    showPopup(popupProfileInfo);
 }
 
 function formSubmitHandler (evt) {
@@ -46,10 +46,6 @@ function showPopup(popup) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-}  
-
-function showPopupEdit() {
-    showPopup(popupProfileInfo);
 }  
 
 function closePopupEdit() {
