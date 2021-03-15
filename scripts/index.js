@@ -26,9 +26,7 @@ const templateElement = document.querySelector('.template');
 
 const elementImg = document.querySelector('.element__img');
 
-function openPopupEdit(evt) {
-    evt.preventDefault();
-   
+function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
 
