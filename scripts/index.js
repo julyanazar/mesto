@@ -51,10 +51,6 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }  
 
-function closePopupAddCard() {
-    closePopup(popupCardAdd);
-}
-
 function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
     const newItem = templateElement.content.cloneNode(true);
@@ -101,7 +97,7 @@ function addCardFormListener (evt) {
     cardsContainer.prepend(newCard);
     //обнуляем поля после ввода значений
     document.querySelector('.form_add').reset();
-    closePopupAddCard(evt);
+    closePopup(popupCardAdd);
 }
 
 function deleteCardHandler(evt) {
@@ -126,16 +122,12 @@ function showPopupImg(item) {
   showPopup(popupZoomImg);
 }
 
-function closePopupImg() {
-  closePopup(popupZoomImg);
-}
-
 editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', () => closePopup(popupProfileInfo));
 addCardButton.addEventListener('click', () => showPopup(popupCardAdd));
-closeButtonAdd.addEventListener('click', closePopupAddCard);
+closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));
 formEditElement.addEventListener('submit', handleProfileSubmit); 
 formAddElement.addEventListener('submit', addCardFormListener);
-closeButtonZoom.addEventListener('click', closePopupImg);
+closeButtonZoom.addEventListener('click', () => closePopup(popupZoomImg));
 
 renderCards(initialCards, cardsContainer);
