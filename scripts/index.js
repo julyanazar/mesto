@@ -21,6 +21,9 @@ const formInputAbout = document.querySelector('.form__input-about');
 const formEditElement = document.querySelector('.form_edit');
 const formAddElement = document.querySelector('.form_add');
 
+const inputCardName = formAddElement.querySelector('.form__input-card-name');
+const inputImg = formAddElement.querySelector('.form__input-src');
+
 const cardsContainer = document.querySelector('.elements__items');
 const templateElement = document.querySelector('.template');
 
@@ -97,10 +100,8 @@ function renderCards() {
 function addCardFormListener (evt) {
     evt.preventDefault();
     //получаем значение написанное в инпут названия карточки
-    const inputCardName = formAddElement.querySelector('.form__input-card-name');
     const inputCardNameValue = inputCardName.value;
     //получаем значение написанное в инпут ссылки на картинку
-    const inputImg = formAddElement.querySelector('.form__input-src');
     const inputImgValue = inputImg.value;
     //создаем новую карточку с полученными выше значениями 
     const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue});
