@@ -36,20 +36,19 @@ function openPopupEdit() {
     showPopup(popupProfileInfo);
 }
 
-function handleProfileSubmit (evt) {
+function handleProfileSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = formInputName.value;
-    profileSubtitle.textContent =  formInputAbout.value;
-    closePopupEdit(); 
+    profileSubtitle.textContent = formInputAbout.value;
 }
 
 function showPopup(popup) {
     popup.classList.add('popup_opened');
-  }
+}
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-}  
+}
 
 function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
@@ -66,33 +65,33 @@ function createCardDomNode(item) {
     //добавляем слушатели карточке
     const deleteButton = newItem.querySelector('.element__trash-button');
     deleteButton.addEventListener('click', deleteCardHandler);
-    
+
     const likeButton = newItem.querySelector('.element__like-button');
     likeButton.addEventListener('click', likeCardHandler);
 
     elementImg.addEventListener('click', () => {
-      showPopupImg(item);
+        showPopupImg(item);
     });
-    
+
     return newItem;
 }
 
 function renderCards(cards, container) {
-    const result = cards.map(function(item) {
+    const result = cards.map(function (item) {
         const newCard = createCardDomNode(item);
         return newCard;
     });
     container.append(...result);
 }
 
-function addCardFormListener (evt) {
+function addCardFormListener(evt) {
     evt.preventDefault();
     //получаем значение написанное в инпут названия карточки
     const inputCardNameValue = inputCardName.value;
     //получаем значение написанное в инпут ссылки на картинку
     const inputImgValue = inputImg.value;
     //создаем новую карточку с полученными выше значениями 
-    const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue});
+    const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue });
     //вставляем карточку в начало
     cardsContainer.prepend(newCard);
     //обнуляем поля после ввода значений
@@ -112,21 +111,21 @@ function likeCardHandler(evt) {
 }
 
 function showPopupImg(item) {
-  const title = popupZoomImg.querySelector('.popup__title');
-  const image = popupZoomImg.querySelector('.popup__img');
+    const title = popupZoomImg.querySelector('.popup__title');
+    const image = popupZoomImg.querySelector('.popup__img');
 
-  title.textContent = item.name;
-  image.src = item.link;
-  image.alt = item.name;
+    title.textContent = item.name;
+    image.src = item.link;
+    image.alt = item.name;
 
-  showPopup(popupZoomImg);
+    showPopup(popupZoomImg);
 }
 
 editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', () => closePopup(popupProfileInfo));
 addCardButton.addEventListener('click', () => showPopup(popupCardAdd));
 closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));
-formEditElement.addEventListener('submit', handleProfileSubmit); 
+formEditElement.addEventListener('submit', handleProfileSubmit);
 formAddElement.addEventListener('submit', addCardFormListener);
 closeButtonZoom.addEventListener('click', () => closePopup(popupZoomImg));
 
