@@ -15,7 +15,7 @@ const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
     buttonElement.classList.add(inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
+    validFormButton(formEditElement);// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     buttonElement.removeAttribute('disabled');
   }
 };

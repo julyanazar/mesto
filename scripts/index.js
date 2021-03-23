@@ -32,7 +32,8 @@ const elementImg = document.querySelector('.element__img');
 function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
-
+    removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
+    validFormButton(formEditElement, closeButtonInfo);// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     showPopup(popupProfileInfo);
 }
 
@@ -42,11 +43,24 @@ function handleProfileSubmit(evt) {
     profileSubtitle.textContent = formInputAbout.value;
 }
 
-// function убратьКОнтейнерыДляОшибокИзФормы (форма, классПолей, классКоторыйНадоУбрать) {
-//     const даннаяФОрма = документ.querySelector(форма)
-//     const поляДаннойФормы = даннаяФОрма.querySelector(классПолей)
-//     поляДаннойФормы.forEach( .... тут найти контейнеры ошибок для каждого поля и скрыть с помощью "классКоторыйНадоУбрать"...)
-//   }
+// Убрать контейнеры для ошибок из формы
+function removeFormErrorContainers(formEditElement) { //передаем на вход ссылку на нужную форму
+    const inputsForm = formEditElement.querySelectorAll('.form__input'); //находим класс полей формы
+
+    //находим контейнеры ошибок для каждого поля и скрываем
+    inputsForm.forEach(
+        item => {//для каждого поля формы(инпута)
+            const errorContainers = formEditElement.querySelector(`#${item.id}-error`);//находим контейнер ощибки по id через поле
+            errorContainers.classList.remove('form__error_visible');//скрываем ошибку
+            item.classList.remove('form__input_type_error');//скрываеем красную линию
+        });
+}
+
+// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+function validFormButton(formEditElement) {
+    const saveButtonForm = formEditElement.querySelector('.form__save-button');
+    saveButtonForm.classList.remove('form__save-button_invalid');
+}
 
 function showPopup(popup) {
     popup.classList.add('popup_opened');
