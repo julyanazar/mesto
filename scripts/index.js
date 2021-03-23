@@ -42,13 +42,28 @@ function handleProfileSubmit(evt) {
     profileSubtitle.textContent = formInputAbout.value;
 }
 
+// function убратьКОнтейнерыДляОшибокИзФормы (форма, классПолей, классКоторыйНадоУбрать) {
+//     const даннаяФОрма = документ.querySelector(форма)
+//     const поляДаннойФормы = даннаяФОрма.querySelector(классПолей)
+//     поляДаннойФормы.forEach( .... тут найти контейнеры ошибок для каждого поля и скрыть с помощью "классКоторыйНадоУбрать"...)
+//   }
+
 function showPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEscPress);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEscPress);    
 }
+
+const closePopupEscPress = (evt) => {
+    const openedPopup = document.querySelector('.popup_opened');
+        if (evt.key === 'Escape') {
+            closePopup(openedPopup);
+        }
+};
 
 function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
