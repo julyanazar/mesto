@@ -31,7 +31,7 @@ function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
     removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
-    validFormButton(formEditElement, closeButtonInfo);// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+    validFormButton(formEditElement);// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     showPopup(popupProfileInfo);
 }
 
@@ -56,9 +56,17 @@ function removeFormErrorContainers(formEditElement) { //передаем на в
 }
 
 // Кнопка активна при открытии попапа редактирования профиля с заполненными полями
-function validFormButton(formEditElement) {
-    const saveButtonForm = formEditElement.querySelector('.form__save-button');
+function validFormButton(form) {
+    const saveButtonForm = form.querySelector('.form__save-button');
     saveButtonForm.classList.remove('form__save-button_invalid');
+    saveButtonForm.removeAttribute('disabled');
+}
+
+// Кнопка не активна при открытии попапа редактирования профиля с заполненными полями
+function invalidFormButton(form) {
+    const saveButtonForm = form.querySelector('.form__save-button');
+    saveButtonForm.classList.add('form__save-button_invalid');
+    saveButtonForm.setAttribute('disabled', true);
 }
 
 function showPopup(popup) {
@@ -157,7 +165,10 @@ function showPopupImg(item) {
 
 editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', () => closePopup(popupProfileInfo));
-addCardButton.addEventListener('click', () => showPopup(popupCardAdd));
+addCardButton.addEventListener('click', () => {
+    invalidFormButton(formAddElement);
+    showPopup(popupCardAdd);
+});
 closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));
 formEditElement.addEventListener('submit', handleProfileSubmit);
 formAddElement.addEventListener('submit', addCardFormListener);
