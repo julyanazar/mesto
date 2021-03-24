@@ -55,14 +55,14 @@ function removeFormErrorContainers(formEditElement) { //передаем на в
         });
 }
 
-// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+// Кнопка активна при открытии попапа 
 function validFormButton(form) {
     const saveButtonForm = form.querySelector('.form__save-button');
     saveButtonForm.classList.remove('form__save-button_invalid');
     saveButtonForm.removeAttribute('disabled');
 }
 
-// Кнопка не активна при открытии попапа редактирования профиля с заполненными полями
+// Кнопка не активна при открытии попапа 
 function invalidFormButton(form) {
     const saveButtonForm = form.querySelector('.form__save-button');
     saveButtonForm.classList.add('form__save-button_invalid');
