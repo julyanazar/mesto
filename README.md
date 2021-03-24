@@ -17,6 +17,8 @@
 * Рендер одной карточки из формы(добавление новой карточки);
 * Защита от XSS;
 * Удаление и лайки карточек;
+* Закрытие модальных окон overlay/esc;
+* Валидация форм;
 
 ### Обзор
 
@@ -29,4 +31,4 @@
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/4zVGOaGcgKgxR46Z3trWAr/JavaScript.-Sprint-5-(Copy)?node-id=16937%3A2)
+* [Ссылка на макет в Figma](https://www.figma.com/file/aOReDc44i998i3DLyCkz8l/JavaScript.-Sprint-6-(Copy)?node-id=0%3A1)
