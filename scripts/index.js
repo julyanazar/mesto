@@ -39,6 +39,7 @@ function handleProfileSubmit(evt) {
     evt.preventDefault();
     profileTitle.textContent = formInputName.value;
     profileSubtitle.textContent = formInputAbout.value;
+    closePopup(popupProfileInfo);
 }
 
 // Убрать контейнеры для ошибок из формы
