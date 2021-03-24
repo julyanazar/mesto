@@ -1,5 +1,3 @@
-const popupForAll = document.querySelector('.popup');
-
 const popupProfileInfo = document.querySelector('.popup_profile_info');
 const closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
 
@@ -79,6 +77,12 @@ const closePopupEscPress = (evt) => {
         }
 };
 
+function сlosePopupOverlay(evt) {
+    if (evt.target.classList.contains('popup')) {
+        closePopup(evt.target);
+      }
+  }
+
 function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
     const newItem = templateElement.content.cloneNode(true);
@@ -157,5 +161,7 @@ closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));
 formEditElement.addEventListener('submit', handleProfileSubmit);
 formAddElement.addEventListener('submit', addCardFormListener);
 closeButtonZoom.addEventListener('click', () => closePopup(popupZoomImg));
-
+popupProfileInfo.addEventListener('click', сlosePopupOverlay)
+popupCardAdd.addEventListener('click', сlosePopupOverlay)
+popupZoomImg.addEventListener('click', сlosePopupOverlay)
 renderCards(initialCards, cardsContainer);
