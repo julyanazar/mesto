@@ -17,7 +17,10 @@ const formInputName = document.querySelector('.form__input-name');
 const formInputAbout = document.querySelector('.form__input-about');
 
 const formEditElement = document.querySelector('.form_edit');
+const saveButtonFormEdit = formEditElement.querySelector('.form__save-button');
+
 const formAddElement = document.querySelector('.form_add');
+const saveButtonFormAdd = formAddElement.querySelector('.form__save-button');
 
 const inputCardName = formAddElement.querySelector('.form__input-card-name');
 const inputImg = formAddElement.querySelector('.form__input-src');
@@ -27,11 +30,13 @@ const templateElement = document.querySelector('.template');
 
 const elementImg = document.querySelector('.element__img');
 
+const inactiveButtonSaveClass = 'form__save-button_invalid';
+
 function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
     removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
-    validFormButton(formEditElement);// Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+    activeFormButton(saveButtonFormEdit, inactiveButtonSaveClass);//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     showPopup(popupProfileInfo);
 }
 
@@ -166,7 +171,7 @@ function showPopupImg(item) {
 editButton.addEventListener('click', openPopupEdit);
 closeButtonInfo.addEventListener('click', () => closePopup(popupProfileInfo));
 addCardButton.addEventListener('click', () => {
-    invalidFormButton(formAddElement);
+    inactiveFormButton(saveButtonFormAdd, inactiveButtonSaveClass);
     showPopup(popupCardAdd);
 });
 closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));

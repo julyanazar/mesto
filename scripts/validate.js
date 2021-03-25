@@ -1,3 +1,15 @@
+// Кнопка активна
+const activeFormButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+};
+
+// Кнопка неактивна
+const inactiveFormButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+
 /* все поля пустые */
 const allInputsEmpty = (inputList) => {
   // Если true - все поля пустые
@@ -12,11 +24,11 @@ const hasInvalidInput = (inputList) => {
 // Переключить состояние кнопки
 const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
   if (/* хотя бы один инпут невалидный */ hasInvalidInput(inputList) || allInputsEmpty(inputList) /* все поля пустые */) {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    // Кнопка неактивна
+    inactiveFormButton(buttonElement, inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    // Кнопка активна
+    activeFormButton(buttonElement, inactiveButtonClass);
   }
 };
 
