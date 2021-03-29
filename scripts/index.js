@@ -6,6 +6,8 @@ const closeButtonAdd = popupCardAdd.querySelector('.popup__close-button');
 
 const popupZoomImg = document.querySelector('.popup_zoom_img');
 const closeButtonZoom = popupZoomImg.querySelector('.popup__close-button');
+const popupZoomTitle = popupZoomImg.querySelector('.popup__title');
+const popupZoomPicture = popupZoomImg.querySelector('.popup__img');
 
 const editButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
@@ -142,7 +144,7 @@ function addCardFormListener(evt) {
     //вставляем карточку в начало
     cardsContainer.prepend(newCard);
     //обнуляем поля после ввода значений
-    document.querySelector('.form_add').reset();
+    formAddElement.reset();
     closePopup(popupCardAdd);
 }
 
@@ -158,12 +160,9 @@ function likeCardHandler(evt) {
 }
 
 function showPopupImg(item) {
-    const title = popupZoomImg.querySelector('.popup__title');
-    const image = popupZoomImg.querySelector('.popup__img');
-
-    title.textContent = item.name;
-    image.src = item.link;
-    image.alt = item.name;
+    popupZoomTitle.textContent = item.name;
+    popupZoomPicture.src = item.link;
+    popupZoomPicture.alt = item.name;
 
     showPopup(popupZoomImg);
 }
