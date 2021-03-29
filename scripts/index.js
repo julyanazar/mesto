@@ -1,11 +1,10 @@
+const popupsAll = document.querySelectorAll('.popup');
+
 const popupProfileInfo = document.querySelector('.popup_profile_info');
-const closeButtonInfo = popupProfileInfo.querySelector('.popup__close-button');
 
 const popupCardAdd = document.querySelector('.popup_card_add');
-const closeButtonAdd = popupCardAdd.querySelector('.popup__close-button');
 
 const popupZoomImg = document.querySelector('.popup_zoom_img');
-const closeButtonZoom = popupZoomImg.querySelector('.popup__close-button');
 const popupZoomTitle = popupZoomImg.querySelector('.popup__title');
 const popupZoomPicture = popupZoomImg.querySelector('.popup__img');
 
@@ -93,12 +92,6 @@ const closePopupEscPress = (evt) => {
         }
 };
 
-function сlosePopupOverlay(evt) {
-    if (evt.target.classList.contains('popup')) {
-        closePopup(evt.target);
-      }
-  }
-
 function createCardDomNode(item) {
     //рекурсивно клонируем содержимое тега template
     const newItem = templateElement.content.cloneNode(true);
@@ -168,16 +161,17 @@ function showPopupImg(item) {
 }
 
 editButton.addEventListener('click', openPopupEdit);
-closeButtonInfo.addEventListener('click', () => closePopup(popupProfileInfo));
 addCardButton.addEventListener('click', () => {
     inactiveFormButton(saveButtonFormAdd, inactiveButtonSaveClass);
     showPopup(popupCardAdd);
 });
-closeButtonAdd.addEventListener('click', () => closePopup(popupCardAdd));
 formEditElement.addEventListener('submit', handleProfileSubmit);
 formAddElement.addEventListener('submit', addCardFormListener);
-closeButtonZoom.addEventListener('click', () => closePopup(popupZoomImg));
-popupProfileInfo.addEventListener('click', сlosePopupOverlay)
-popupCardAdd.addEventListener('click', сlosePopupOverlay)
-popupZoomImg.addEventListener('click', сlosePopupOverlay)
+popupsAll.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup)
+        }
+    });
+}); 
 renderCards(initialCards, cardsContainer);
