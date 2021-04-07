@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
     constructor(rest, formElement) {
         this.formSelector = rest.formSelector;
         this.inputSelector = rest.inputSelector;
@@ -54,9 +54,9 @@ class FormValidator {
 
     _toggleButtonState = () => {
         if (this._hasInvalidInput() || this._allInputsEmpty()) {
-            this._inactiveFormButton();
+            this.inactiveFormButton();
         } else {
-            this._activeFormButton();
+            this.activeFormButton();
         }
     }
 
@@ -70,13 +70,17 @@ class FormValidator {
             inputElement.value.length > 0);
     }
 
-    _inactiveFormButton = () => {
-        this.buttonElement.classList.add(this.inactiveButtonClass);
-        this.buttonElement.setAttribute('disabled', true);
+    inactiveFormButton = () => {
+        this.buttonElement.classList
+            .add(this.inactiveButtonClass);
+        this.buttonElement
+            .setAttribute('disabled', true);
     }
 
-    _activeFormButton = () => {
-        this.buttonElement.classList.remove(this.inactiveButtonClass);
-        this.buttonElement.removeAttribute('disabled');
+    activeFormButton = () => {
+        this.buttonElement.classList
+            .remove(this.inactiveButtonClass);
+        this.buttonElement
+            .removeAttribute('disabled');
     }
 }

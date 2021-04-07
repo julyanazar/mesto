@@ -41,3 +41,29 @@ const configValidation = {
     inputErrorClass: 'form__input_type_error',
     errorClass: 'form__error_visible'
   }
+
+  export {
+    popupsAll,
+    popupProfileInfo,
+    popupCardAdd,
+    popupZoomImg,
+    popupZoomTitle,
+    popupZoomPicture,
+    editButton,
+    addCardButton,
+    profileTitle,
+    profileSubtitle,
+    formInputName,
+    formInputAbout,
+    formEditElement,
+    saveButtonFormEdit,
+    formAddElement,
+    saveButtonFormAdd,
+    inputCardName,
+    inputImg,
+    cardsContainer,
+    templateElement,
+    elementImg,
+    inactiveButtonSaveClass,
+    configValidation
+  }

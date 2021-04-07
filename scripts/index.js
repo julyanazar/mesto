@@ -1,8 +1,30 @@
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+import {
+    popupsAll,
+    popupProfileInfo,
+    popupCardAdd,
+    editButton,
+    addCardButton,
+    profileTitle,
+    profileSubtitle,
+    formInputName,
+    formInputAbout,
+    formEditElement,
+    formAddElement,
+    inputCardName,
+    inputImg,
+    cardsContainer,
+    configValidation
+} from './constants.js';
+import { initialCards } from './initial-сards.js';
+import { showPopup } from './utils.js';
+
 function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
     removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
-    //activeFormButton(saveButtonFormEdit, inactiveButtonSaveClass);//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+    formValidateEdit.activeFormButton();//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     showPopup(popupProfileInfo);
 }
 
@@ -31,7 +53,7 @@ function closePopup(popup) {
     document.removeEventListener('keydown', closePopupEscPress);
 }
 
-const closePopupEscPress = (evt) => {
+export const closePopupEscPress = (evt) => {
     const openedPopup = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') {
         closePopup(openedPopup);
@@ -63,7 +85,7 @@ function addCardFormListener(evt) {
 
 editButton.addEventListener('click', openPopupEdit);
 addCardButton.addEventListener('click', () => {
-    //inactiveFormButton(saveButtonFormAdd, inactiveButtonSaveClass);
+    formValidateAdd.inactiveFormButton();
     showPopup(popupCardAdd);
 });
 formEditElement.addEventListener('submit', handleProfileSubmit);
@@ -83,7 +105,10 @@ formList.forEach(
         formElement.addEventListener('submit', evt => {
             evt.preventDefault();
         });
-
-        const formValidate = new FormValidator(configValidation, formElement);
-        formValidate.enableValidation();
     });
+
+const formValidateEdit = new FormValidator(configValidation, formEditElement);
+const formValidateAdd = new FormValidator(configValidation, formAddElement);
+
+formValidateEdit.enableValidation();
+formValidateAdd.enableValidation();
