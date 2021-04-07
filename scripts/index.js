@@ -2,7 +2,7 @@ function openPopupEdit() {
     formInputName.value = profileTitle.textContent;
     formInputAbout.value = profileSubtitle.textContent;
     removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
-    activeFormButton(saveButtonFormEdit, inactiveButtonSaveClass);//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+    //activeFormButton(saveButtonFormEdit, inactiveButtonSaveClass);//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
     showPopup(popupProfileInfo);
 }
 
@@ -26,30 +26,16 @@ function removeFormErrorContainers(formEditElement) { //передаем на в
         });
 }
 
-// Кнопка активна при открытии попапа 
-function validFormButton(form) {
-    const saveButtonForm = form.querySelector('.form__save-button');
-    saveButtonForm.classList.remove('form__save-button_invalid');
-    saveButtonForm.removeAttribute('disabled');
-}
-
-// Кнопка не активна при открытии попапа 
-function invalidFormButton(form) {
-    const saveButtonForm = form.querySelector('.form__save-button');
-    saveButtonForm.classList.add('form__save-button_invalid');
-    saveButtonForm.setAttribute('disabled', true);
-}
-
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupEscPress);    
+    document.removeEventListener('keydown', closePopupEscPress);
 }
 
 const closePopupEscPress = (evt) => {
     const openedPopup = document.querySelector('.popup_opened');
-        if (evt.key === 'Escape') {
-            closePopup(openedPopup);
-        }
+    if (evt.key === 'Escape') {
+        closePopup(openedPopup);
+    }
 };
 
 function renderCards(cards, container) {
@@ -67,7 +53,6 @@ function addCardFormListener(evt) {
     //получаем значение написанное в инпут ссылки на картинку
     const inputImgValue = inputImg.value;
     //создаем новую карточку с полученными выше значениями 
-    //const newCard = createCardDomNode({ name: inputCardNameValue, link: inputImgValue });
     const newCard = new Card(inputCardNameValue, inputImgValue, '#element');
     //вставляем карточку в начало
     cardsContainer.prepend(newCard.createCardDomNode());
@@ -78,7 +63,7 @@ function addCardFormListener(evt) {
 
 editButton.addEventListener('click', openPopupEdit);
 addCardButton.addEventListener('click', () => {
-    inactiveFormButton(saveButtonFormAdd, inactiveButtonSaveClass);
+    //inactiveFormButton(saveButtonFormAdd, inactiveButtonSaveClass);
     showPopup(popupCardAdd);
 });
 formEditElement.addEventListener('submit', handleProfileSubmit);
@@ -89,5 +74,16 @@ popupsAll.forEach((popup) => {
             closePopup(popup)
         }
     });
-}); 
+});
 renderCards(initialCards, cardsContainer);
+
+const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
+formList.forEach(
+    formElement => {
+        formElement.addEventListener('submit', evt => {
+            evt.preventDefault();
+        });
+
+        const formValidate = new FormValidator(configValidation, formElement);
+        formValidate.enableValidation();
+    });
