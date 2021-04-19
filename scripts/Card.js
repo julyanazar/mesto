@@ -1,5 +1,6 @@
 import { showPopup } from './utils.js';
 import {popupZoomImg, popupZoomTitle, popupZoomPicture} from './constants.js';
+
 export class Card {
     constructor(name, link, cardSelector) {
         this._name = name;

@@ -1,5 +1,6 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
+import Section from './Section.js';
 import {
     popupsAll,
     popupProfileInfo,
@@ -15,7 +16,8 @@ import {
     inputCardName,
     inputImg,
     cardsContainer,
-    configValidation
+    configValidation,
+    cardListSelector
 } from './constants.js';
 import { initialCards } from './initial-сards.js';
 import { showPopup } from './utils.js';
@@ -60,13 +62,24 @@ export const closePopupEscPress = (evt) => {
     }
 };
 
-function renderCards(cards, container) {
-    const result = cards.map(function (item) {
-        const newCard = new Card(item.name, item.link, '#element');
-        return newCard.createCardDomNode();
-    });
-    container.append(...result);
-}
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (cardItem) => {
+      const card = new Card(cardItem.name, cardItem.link, '#element');
+      const cardElement = card.createCardDomNode();
+      cardsList.setItem(cardElement);
+    }
+  },
+  cardListSelector);
+cardsList.renderItems()
+
+// function renderCards(cards, container) {
+//     const result = cards.map(function (item) {
+//         const newCard = new Card(item.name, item.link, '#element');
+//         return newCard.createCardDomNode();
+//     });
+//     container.append(...result);
+// }
 
 function addCardFormListener(evt) {
     evt.preventDefault();
@@ -97,7 +110,7 @@ popupsAll.forEach((popup) => {
         }
     });
 });
-renderCards(initialCards, cardsContainer);
+//renderCards(initialCards, cardsContainer);
 
 const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
 formList.forEach(

@@ -27,6 +27,7 @@ const inputCardName = formAddElement.querySelector('.form__input-card-name');
 const inputImg = formAddElement.querySelector('.form__input-src');
 
 const cardsContainer = document.querySelector('.elements__items');
+const cardListSelector = '.elements__items';
 const templateElement = document.querySelector('.template');
 
 const elementImg = document.querySelector('.element__img');
@@ -65,5 +66,6 @@ const configValidation = {
     templateElement,
     elementImg,
     inactiveButtonSaveClass,
-    configValidation
+    configValidation,
+    cardListSelector
   }
