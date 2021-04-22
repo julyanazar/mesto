@@ -2,22 +2,22 @@ import { popupsAll } from '../utils/constants.js'
 
 export default class Popup {
     constructor(popupSelector) {
-        this.popup = popupSelector;
+        this._popup = popupSelector;
     }
 
     open() {
-        this.popup.classList.add('popup_opened')
-        document.addEventListener('keydown', this._handleEscClose.bind(this))
+        this._popup.classList.add('popup_opened');
+        document.addEventListener('keydown', this._handleEscClose.bind(this));
     }
 
     close() {
-        this.popup.classList.remove('popup_opened')
-        document.removeEventListener('keydown', this._handleEscClose.bind(this))
+        this._popup.classList.remove('popup_opened');
+        document.removeEventListener('keydown', this._handleEscClose.bind(this));
     }
 
     _handleEscClose(evt) {
         if (evt.key === "Escape") {
-            this.close()
+            this.close();
         }
     }
 

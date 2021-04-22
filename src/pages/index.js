@@ -24,27 +24,14 @@ import {
     profileSelectors
 } from '../utils/constants.js';
 
-const cardsList = new Section({
-    items: initialCards,
-    renderer: (cardItem) => {
-        const card = new Card(cardItem.name, cardItem.link, '#element', {
-            handleCardClick: (name, link) => {
-                imagePopup.open(name, link);
-            }
-        });
-        const cardElement = card.createCardDomNode();
-        cardsList.setItem(cardElement);
-    }
-},
-    cardListSelector);
-cardsList.renderItems()
-
-const userInfo = new UserInfo(profileSelectors);
 function openPopupEdit() {
     const currentInfo = userInfo.getUserInfo();
+
     formInputName.value = currentInfo.name;
     formInputAbout.value = currentInfo.about;
+
     popupEditProfile.open();
+
     removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
     formValidateEdit.activeFormButton();//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
 }
@@ -74,14 +61,12 @@ const formEditSubmitHandler = (evt) => {
     popupEditProfile.close();
 }
 
-const popupEditProfile = new PopupWithForm(popupProfileInfo, formEditSubmitHandler)
-popupEditProfile.setEventListeners();
-
 const formAddSubmitHandler = (event) => {
     event.preventDefault();
 
     const inputCardNameValue = inputCardName.value;
     const inputImgValue = inputImg.value;
+
     cardsContainer.prepend(new Card(inputCardNameValue, inputImgValue, '#element', {
         handleCardClick: (name, link) => {
             imagePopup.open(name, link);
@@ -90,11 +75,20 @@ const formAddSubmitHandler = (event) => {
     popupAddCard.close();
 }
 
-const popupAddCard = new PopupWithForm(popupCardAdd, formAddSubmitHandler)
-popupAddCard.setEventListeners();
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (cardItem) => {
+        const card = new Card(cardItem.name, cardItem.link, '#element', {
+            handleCardClick: (name, link) => {
+                imagePopup.open(name, link);
+            }
+        });
 
-const imagePopup = new PopupWithImage(popupZoomImg)
-imagePopup.setEventListeners()
+        const cardElement = card.createCardDomNode();
+        cardsList.setItem(cardElement);
+    }
+}, cardListSelector);
+cardsList.renderItems();
 
 editButton.addEventListener('click', openPopupEdit);
 
@@ -111,8 +105,18 @@ formList.forEach(
         });
     });
 
+const userInfo = new UserInfo(profileSelectors);
+
 const formValidateEdit = new FormValidator(configValidation, formEditElement);
 const formValidateAdd = new FormValidator(configValidation, formAddElement);
 
 formValidateEdit.enableValidation();
 formValidateAdd.enableValidation();
+
+const popupEditProfile = new PopupWithForm(popupProfileInfo, formEditSubmitHandler);
+const popupAddCard = new PopupWithForm(popupCardAdd, formAddSubmitHandler);
+const imagePopup = new PopupWithImage(popupZoomImg);
+
+popupEditProfile.setEventListeners();
+popupAddCard.setEventListeners();
+imagePopup.setEventListeners();
