@@ -1,11 +1,9 @@
-import { showPopup } from './utils.js';
-import {popupZoomImg, popupZoomTitle, popupZoomPicture} from './constants.js';
-
-export class Card {
-    constructor(name, link, cardSelector) {
+export default class Card {
+    constructor(name, link, cardSelector, { handleCardClick }) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     createCardDomNode = () => {
@@ -27,15 +25,15 @@ export class Card {
 
     _getTemplate = () => {
         const cardElement = document
-          .querySelector(this._cardSelector)
-          .content
-          .querySelector('.element')
-          .cloneNode(true);
-    
-        return cardElement;
-      }
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.element')
+            .cloneNode(true);
 
-      _setEventListeners = () => {
+        return cardElement;
+    }
+
+    _setEventListeners = () => {
         this._newItem
             .querySelector('.element__trash-button')
             .addEventListener('click', () => {
@@ -48,28 +46,20 @@ export class Card {
                 this._likeCardHandler();
             });
 
-        this._newItem
-            .querySelector('.element__img')
+        this._newItem.querySelector('.element__img')
             .addEventListener('click', () => {
-            this._showPopupImg();
-        });
-      }
+                this._handleCardClick(this._name, this._link);
+            });
 
-      _deleteCardHandler = () => {
+    }
+
+    _deleteCardHandler = () => {
         this._newItem.remove();
-      }
+    }
 
-      _likeCardHandler = () => {
+    _likeCardHandler = () => {
         this._newItem
             .querySelector('.element__like-button')
             .classList.toggle('element__like-button_active');
-      }
-
-      _showPopupImg = () => {
-        popupZoomTitle.textContent = this._name;
-        popupZoomPicture.src = this._link;
-        popupZoomPicture.alt = this._name;
-    
-        showPopup(popupZoomImg);
-      }
+    }
 }

@@ -5,6 +5,7 @@ const popupProfileInfo = document.querySelector('.popup_profile_info');
 const popupCardAdd = document.querySelector('.popup_card_add');
 
 const popupZoomImg = document.querySelector('.popup_zoom_img');
+
 const popupZoomTitle = popupZoomImg.querySelector('.popup__title');
 const popupZoomPicture = popupZoomImg.querySelector('.popup__img');
 
@@ -15,7 +16,10 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
 const formInputName = document.querySelector('.form__input-name');
+const formInputNameSelector = '.profile__title';
+
 const formInputAbout = document.querySelector('.form__input-about');
+const formInputAboutSelector = '.profile__subtitle';
 
 const formEditElement = document.querySelector('.form_edit');
 const saveButtonFormEdit = formEditElement.querySelector('.form__save-button');
@@ -34,38 +38,46 @@ const elementImg = document.querySelector('.element__img');
 
 const inactiveButtonSaveClass = 'form__save-button_invalid';
 
-const configValidation = {
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__save-button',
-    inactiveButtonClass: 'form__save-button_invalid',
-    inputErrorClass: 'form__input_type_error',
-    errorClass: 'form__error_visible'
-  }
+const profileSelectors = {
+  nameSelector: '.profile__title', 
+  aboutSelector: '.profile__subtitle'
+}
 
-  export {
-    popupsAll,
-    popupProfileInfo,
-    popupCardAdd,
-    popupZoomImg,
-    popupZoomTitle,
-    popupZoomPicture,
-    editButton,
-    addCardButton,
-    profileTitle,
-    profileSubtitle,
-    formInputName,
-    formInputAbout,
-    formEditElement,
-    saveButtonFormEdit,
-    formAddElement,
-    saveButtonFormAdd,
-    inputCardName,
-    inputImg,
-    cardsContainer,
-    templateElement,
-    elementImg,
-    inactiveButtonSaveClass,
-    configValidation,
-    cardListSelector
-  }
+const configValidation = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass: 'form__save-button_invalid',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_visible'
+}
+
+export {
+  popupsAll,
+  popupProfileInfo,
+  popupCardAdd,
+  popupZoomImg,
+  popupZoomTitle,
+  popupZoomPicture,
+  editButton,
+  addCardButton,
+  profileTitle,
+  profileSubtitle,
+  formInputName,
+  formInputAbout,
+  formEditElement,
+  saveButtonFormEdit,
+  formAddElement,
+  saveButtonFormAdd,
+  inputCardName,
+  inputImg,
+  cardsContainer,
+  templateElement,
+  elementImg,
+  inactiveButtonSaveClass,
+  configValidation,
+  cardListSelector,
+  formInputNameSelector,
+  formInputAboutSelector,
+  profileSelectors
+}
