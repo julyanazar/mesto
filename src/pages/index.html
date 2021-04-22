@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./index.css">
 </head>
 
 <body class="root">
     <div class="page">
         <header class="header page__header">
-            <img src="../images/header-logo.svg" alt="Логотип Место" class="header__logo">
+            <img src="<%=require('../images/header-logo.svg')%>" alt="Логотип Место" class="header__logo">
             <div class="line"></div>
         </header>
 
         <main class="content">
             <section class="profile content__section">
                 <div class="profile__bio">
-                    <img src="../images/profile-avatar.png" class="profile__avatar" alt="Аватар профиля">
+                    <img src="<%=require('../images/profile-avatar.png')%>" class="profile__avatar"
+                        alt="Аватар профиля">
                     <div class="profile__info">
                         <div class="profile__name">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -100,7 +100,6 @@
                 aria-label="закрыть окно приближения изображения карточки"></button>
         </div>
     </div>
-    <script src="./index.js" type="module"></script>
 </body>
 
 </html>

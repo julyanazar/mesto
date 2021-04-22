@@ -23,6 +23,7 @@ import {
     popupZoomImg,
     profileSelectors
 } from '../utils/constants.js';
+import './index.css';
 
 function openPopupEdit() {
     const currentInfo = userInfo.getUserInfo();
