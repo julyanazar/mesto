@@ -5,6 +5,7 @@ export default class FormValidator {
         this._submitButtonSelector = rest.submitButtonSelector;
         this._inactiveButtonClass = rest.inactiveButtonClass;
         this._inputErrorClass = rest.inputErrorClass;
+        this._textErrorSelector = rest.textErrorSelector;
         this._errorClass = rest.errorClass;
         this._formElement = formElement;
     }
@@ -83,4 +84,15 @@ export default class FormValidator {
         this.buttonElement
             .removeAttribute('disabled');
     }
+
+    resetValidation = () => {
+        const inputsForm = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        inputsForm.forEach(
+            item => {
+                const errorContainers = this._formElement.querySelector(`#${item.id}-error`);
+                errorContainers.classList.remove(this._errorClass);
+                item.classList.remove(this._inputErrorClass);
+        });
+    }
+
 }

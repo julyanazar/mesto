@@ -33,21 +33,8 @@ function openPopupEdit() {
 
     popupEditProfile.open();
 
-    removeFormErrorContainers(formEditElement);// Убрать контейнеры для ошибок из формы перед открытия попапа
+    formValidateEdit.resetValidation();// Убрать контейнеры для ошибок из формы перед открытия попапа
     formValidateEdit.activeFormButton();//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
-}
-
-// Убрать контейнеры для ошибок из формы
-function removeFormErrorContainers(formEditElement) { //передаем на вход ссылку на нужную форму
-    const inputsForm = formEditElement.querySelectorAll('.form__input'); //находим класс полей формы
-
-    //находим контейнеры ошибок для каждого поля и скрываем
-    inputsForm.forEach(
-        item => {//для каждого поля формы(инпута)
-            const errorContainers = formEditElement.querySelector(`#${item.id}-error`);//находим контейнер ощибки по id через поле
-            errorContainers.classList.remove('form__error_visible');//скрываем ошибку
-            item.classList.remove('form__input_type_error');//скрываеем красную линию
-        });
 }
 
 function createCard(name, link, template) {
@@ -82,7 +69,9 @@ cardsList.renderItems();
 editButton.addEventListener('click', openPopupEdit);
 
 addCardButton.addEventListener('click', () => {
+    formValidateAdd.resetValidation();
     formValidateAdd.inactiveFormButton();
+    
     popupAddCard.open();
 });
 

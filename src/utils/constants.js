@@ -52,6 +52,7 @@ const configValidation = {
   submitButtonSelector: '.form__save-button',
   inactiveButtonClass: 'form__save-button_invalid',
   inputErrorClass: 'form__input_type_error',
+  textErrorSelector: 'form__error',
   errorClass: 'form__error_visible'
 }
 
