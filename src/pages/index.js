@@ -13,9 +13,6 @@ import {
     formInputAbout,
     formEditElement,
     formAddElement,
-    inputCardName,
-    inputImg,
-    cardsContainer,
     configValidation,
     cardListSelector,
     profileSelectors,
@@ -71,7 +68,7 @@ editButton.addEventListener('click', openPopupEdit);
 addCardButton.addEventListener('click', () => {
     formValidateAdd.resetValidation();
     formValidateAdd.inactiveFormButton();
-    
+
     popupAddCard.open();
 });
 
