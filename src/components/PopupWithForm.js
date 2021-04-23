@@ -8,20 +8,20 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._inputValuesList = {};
+    this._inputValues = {};
 
     this._formElement
       .querySelectorAll('.form__input')
       .forEach((input) => {
-        this._inputValuesList[input.name] = input.value;
+        this._inputValues[input.name] = input.value;
       });
-
+    return this._inputValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener('submit', (evt) => {
-      this._submit(evt);
+      this._submit(this._getInputValues());
     });
   }
 

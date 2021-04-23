@@ -7,8 +7,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import { initialCards } from '../utils/initial-сards.js';
 
 import {
-    popupProfileInfo,
-    popupCardAdd,
     editButton,
     addCardButton,
     formInputName,
@@ -20,7 +18,6 @@ import {
     cardsContainer,
     configValidation,
     cardListSelector,
-    popupZoomImg,
     profileSelectors,
     popupProfileInfoSelector,
     popupCardAddSelector,
@@ -53,43 +50,31 @@ function removeFormErrorContainers(formEditElement) { //передаем на в
         });
 }
 
-const formEditSubmitHandler = (evt) => {
-    evt.preventDefault();
-
-    const info = {
-        name: formInputName.value,
-        about: formInputAbout.value
-    }
-
-    userInfo.setUserInfo(info);
-    popupEditProfile.close();
-}
-
-const formAddSubmitHandler = (event) => {
-    event.preventDefault();
-
-    const inputCardNameValue = inputCardName.value;
-    const inputImgValue = inputImg.value;
-
-    cardsContainer.prepend(new Card(inputCardNameValue, inputImgValue, '#element', {
+function createCard(name, link, template) {
+    const card = new Card(name, link, template, {
         handleCardClick: (name, link) => {
             imagePopup.open(name, link);
         }
-    }).createCardDomNode());
+    });
+    const cardElement = card.createCardDomNode();
+    return cardElement;
+}
+
+const formEditSubmitHandler = (inputValues) => {
+    userInfo.setUserInfo(inputValues);
+    popupEditProfile.close();
+}
+
+const formAddSubmitHandler = (inputValues) => {
+    cardsList.setItemPrepend(createCard(inputValues.name, inputValues.about, '#element'));
+
     popupAddCard.close();
 }
 
 const cardsList = new Section({
     items: initialCards,
     renderer: (cardItem) => {
-        const card = new Card(cardItem.name, cardItem.link, '#element', {
-            handleCardClick: (name, link) => {
-                imagePopup.open(name, link);
-            }
-        });
-
-        const cardElement = card.createCardDomNode();
-        cardsList.setItem(cardElement);
+        cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
     }
 }, cardListSelector);
 cardsList.renderItems();
