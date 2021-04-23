@@ -21,7 +21,10 @@ import {
     configValidation,
     cardListSelector,
     popupZoomImg,
-    profileSelectors
+    profileSelectors,
+    popupProfileInfoSelector,
+    popupCardAddSelector,
+    popupZoomImgSelector
 } from '../utils/constants.js';
 import './index.css';
 
@@ -114,9 +117,9 @@ const formValidateAdd = new FormValidator(configValidation, formAddElement);
 formValidateEdit.enableValidation();
 formValidateAdd.enableValidation();
 
-const popupEditProfile = new PopupWithForm(popupProfileInfo, formEditSubmitHandler);
-const popupAddCard = new PopupWithForm(popupCardAdd, formAddSubmitHandler);
-const imagePopup = new PopupWithImage(popupZoomImg);
+const popupEditProfile = new PopupWithForm(popupProfileInfoSelector, formEditSubmitHandler);
+const popupAddCard = new PopupWithForm(popupCardAddSelector, formAddSubmitHandler);
+const imagePopup = new PopupWithImage(popupZoomImgSelector);
 
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();

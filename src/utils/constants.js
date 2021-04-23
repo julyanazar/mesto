@@ -1,10 +1,13 @@
 const popupsAll = document.querySelectorAll('.popup');
 
 const popupProfileInfo = document.querySelector('.popup_profile_info');
+const popupProfileInfoSelector = '.popup_profile_info';
 
 const popupCardAdd = document.querySelector('.popup_card_add');
+const popupCardAddSelector = '.popup_card_add';
 
 const popupZoomImg = document.querySelector('.popup_zoom_img');
+const popupZoomImgSelector = '.popup_zoom_img';
 
 const popupZoomTitle = popupZoomImg.querySelector('.popup__title');
 const popupZoomPicture = popupZoomImg.querySelector('.popup__img');
@@ -79,5 +82,8 @@ export {
   cardListSelector,
   formInputNameSelector,
   formInputAboutSelector,
-  profileSelectors
+  profileSelectors,
+  popupProfileInfoSelector,
+  popupCardAddSelector,
+  popupZoomImgSelector
 }
