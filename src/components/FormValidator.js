@@ -92,6 +92,7 @@ export default class FormValidator {
                 errorContainers.classList.remove(this._errorClass);
                 item.classList.remove(this._inputErrorClass);
         });
+        this._toggleButtonState(); 
     }
 
 }

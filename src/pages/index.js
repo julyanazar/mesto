@@ -30,8 +30,7 @@ function openPopupEdit() {
 
     popupEditProfile.open();
 
-    formValidateEdit.resetValidation();// Убрать контейнеры для ошибок из формы перед открытия попапа
-    formValidateEdit.activeFormButton();//Кнопка активна при открытии попапа редактирования профиля с заполненными полями
+    formValidateEdit.resetValidation();// метод для очистки ошибок и управления кнопкой 
 }
 
 function createCard(name, link, template) {
@@ -66,8 +65,7 @@ cardsList.renderItems();
 editButton.addEventListener('click', openPopupEdit);
 
 addCardButton.addEventListener('click', () => {
-    formValidateAdd.resetValidation();
-    formValidateAdd.inactiveFormButton();
+    formValidateAdd.resetValidation();//// метод для очистки ошибок и управления кнопкой 
 
     popupAddCard.open();
 });
