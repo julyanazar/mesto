@@ -17,8 +17,12 @@
         <main class="content">
             <section class="profile content__section">
                 <div class="profile__bio">
-                    <img src="<%=require('../images/profile-avatar.png')%>" class="profile__avatar"
-                        alt="Аватар профиля">
+                    <div class="profile__avatar-container">
+                        <img src="<%=require('../images/profile-avatar.png')%>" class="profile__avatar"
+                            alt="Аватар профиля">
+                        <img src="<%=require('../images/profile-avatar-edit.svg')%>" class="profile__avatar-edit"
+                            alt="Смена аватара профиля">
+                    </div>
                     <div class="profile__info">
                         <div class="profile__name">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>

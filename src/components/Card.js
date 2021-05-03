@@ -4,6 +4,13 @@ export default class Card {
         this._link = link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        /*
+        this._inputList
+        this._submitButton
+        this._form
+        this._cardImage
+        this._likeButton
+        */
     }
 
     createCardDomNode = () => {
