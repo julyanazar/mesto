@@ -41,6 +41,14 @@ const elementImg = document.querySelector('.element__img');
 
 const inactiveButtonSaveClass = 'form__save-button_invalid';
 
+const profileAvatar = document.querySelector('.profile__avatar')
+const profileAvatarContainer = document.querySelector('.profile__avatar-container')
+const popupEditAvatar = document.querySelector('.popup_edit_avatar');
+const popupEditAvatarSelector = '.popup_edit_avatar'
+const formAvatarElement = popupEditAvatar.querySelector('.form_avatar');
+const popupCloseButtonSelector = '.popup__close-button';
+const popupAvatarInput = popupEditAvatar.querySelector('.form__input-link-avatar');
+
 const profileSelectors = {
   nameSelector: '.profile__title', 
   aboutSelector: '.profile__subtitle'
@@ -86,4 +94,12 @@ export {
   popupProfileInfoSelector,
   popupCardAddSelector,
   popupZoomImgSelector,
+
+  profileAvatar,
+  profileAvatarContainer,
+  popupEditAvatar,
+  popupEditAvatarSelector,
+  formAvatarElement,
+  popupCloseButtonSelector,
+  popupAvatarInput
 }

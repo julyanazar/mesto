@@ -33,6 +33,20 @@ export default class Api {
             .catch(err => this._errorRequestResult(err));
     }
 
+    // Редактировать аватар пользователя
+    editUserAvatar(urlAvatar) {
+        console.log(urlAvatar);
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: urlAvatar
+            })
+        })
+            .then(res => this._checkRequestResult(res))
+            .catch(err => this._errorRequestResult(err));
+    }
+
     _checkRequestResult(res) {
         if (res.ok) {
             return res.json();

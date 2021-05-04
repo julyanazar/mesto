@@ -22,6 +22,14 @@ import {
     popupZoomImgSelector,
     profileTitle,
     profileSubtitle,
+
+    profileAvatar,
+    profileAvatarContainer,
+    popupEditAvatar,
+    formAvatarElement,
+    popupEditAvatarSelector,
+    popupCloseButtonSelector,
+    popupAvatarInput
 } from '../utils/constants.js';
 import './index.css';
 
@@ -50,13 +58,13 @@ const formEditSubmitHandler = (inputValues) => {
     const info = {
         name: formInputName.value,
         about: formInputAbout.value
-      }
+    }
 
     api.editUserInfo(info.name, info.about)
-    .finally(() => {
-        userInfo.setUserInfo(inputValues);
-        popupEditProfile.close();
-      })
+        .finally(() => {
+            userInfo.setUserInfo(inputValues);
+            popupEditProfile.close();
+        })
 
     // userInfo.setUserInfo(inputValues);
     // popupEditProfile.close();
@@ -81,7 +89,7 @@ cardsList.renderItems();
 editButton.addEventListener('click', openPopupEdit);
 
 addCardButton.addEventListener('click', () => {
-    formValidateAdd.resetValidation();//// метод для очистки ошибок и управления кнопкой 
+    formValidateAdd.resetValidation();// метод для очистки ошибок и управления кнопкой 
 
     popupAddCard.open();
 });
@@ -110,6 +118,7 @@ popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 imagePopup.setEventListeners();
 
+
 // Экземпляр класса для работы с API
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-23',
@@ -133,6 +142,27 @@ api.getInitialCards().then((data) => {
 api.getUserInfo().then((data => {
     profileTitle.textContent = data.name;
     profileSubtitle.textContent = data.about;
+    profileAvatar.src = data.avatar;
 }))
 
-//api.editUserInfo(info.name, info.about)
+// Редактируем аватар
+const FormValidateAvatar = new FormValidator(configValidation, formAvatarElement);
+FormValidateAvatar.enableValidation();
+
+const formEditAvatarSubmitHandler = () => {
+
+  profileAvatar.src = popupAvatarInput.value;
+
+  api.editUserAvatar(popupAvatarInput.value)
+  .finally(() => {
+      popupAvatarEdit.close();
+    });
+
+}
+const popupAvatarEdit = new PopupWithForm(popupEditAvatarSelector, formEditAvatarSubmitHandler);
+popupAvatarEdit.setEventListeners();
+
+profileAvatarContainer.addEventListener('click', function() {
+    popupAvatarEdit.open();
+    FormValidateAvatar.resetValidation();// метод для очистки ошибок и управления кнопкой 
+  })
