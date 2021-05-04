@@ -4,6 +4,7 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import Api from '../components/Api.js';
 import { initialCards } from '../utils/initial-сards.js';
 
 import {
@@ -18,7 +19,9 @@ import {
     profileSelectors,
     popupProfileInfoSelector,
     popupCardAddSelector,
-    popupZoomImgSelector
+    popupZoomImgSelector,
+    profileTitle,
+    profileSubtitle,
 } from '../utils/constants.js';
 import './index.css';
 
@@ -44,8 +47,19 @@ function createCard(name, link, template) {
 }
 
 const formEditSubmitHandler = (inputValues) => {
-    userInfo.setUserInfo(inputValues);
-    popupEditProfile.close();
+    const info = {
+        name: formInputName.value,
+        about: formInputAbout.value
+      }
+
+    api.editUserInfo(info.name, info.about)
+    .finally(() => {
+        userInfo.setUserInfo(inputValues);
+        popupEditProfile.close();
+      })
+
+    // userInfo.setUserInfo(inputValues);
+    // popupEditProfile.close();
 }
 
 const formAddSubmitHandler = (inputValues) => {
@@ -54,6 +68,7 @@ const formAddSubmitHandler = (inputValues) => {
     popupAddCard.close();
 }
 
+/*
 const cardsList = new Section({
     items: initialCards,
     renderer: (cardItem) => {
@@ -61,6 +76,7 @@ const cardsList = new Section({
     }
 }, cardListSelector);
 cardsList.renderItems();
+*/
 
 editButton.addEventListener('click', openPopupEdit);
 
@@ -93,3 +109,30 @@ const imagePopup = new PopupWithImage(popupZoomImgSelector);
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 imagePopup.setEventListeners();
+
+// Экземпляр класса для работы с API
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-23',
+    headers: {
+        authorization: 'e56d1e25-39ae-447a-8210-54350a3c4955',
+        'Content-Type': 'application/json'
+    }
+});
+
+api.getInitialCards().then((data) => {
+    const cardsList = new Section({
+        items: data,
+        renderer: (cardItem) => {
+            cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
+        }
+    }, cardListSelector);
+    cardsList.renderItems();
+});
+
+// Получаем с сервера данные пользователя
+api.getUserInfo().then((data => {
+    profileTitle.textContent = data.name;
+    profileSubtitle.textContent = data.about;
+}))
+
+//api.editUserInfo(info.name, info.about)

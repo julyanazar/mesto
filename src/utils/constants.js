@@ -85,5 +85,5 @@ export {
   profileSelectors,
   popupProfileInfoSelector,
   popupCardAddSelector,
-  popupZoomImgSelector
+  popupZoomImgSelector,
 }
