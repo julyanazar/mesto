@@ -48,6 +48,7 @@ const popupEditAvatarSelector = '.popup_edit_avatar'
 const formAvatarElement = popupEditAvatar.querySelector('.form_avatar');
 const popupCloseButtonSelector = '.popup__close-button';
 const popupAvatarInput = popupEditAvatar.querySelector('.form__input-link-avatar');
+const popupEditAvatarSaveButton = popupEditAvatar.querySelector('.form__save-button');
 
 const profileSelectors = {
   nameSelector: '.profile__title', 
@@ -101,5 +102,6 @@ export {
   popupEditAvatarSelector,
   formAvatarElement,
   popupCloseButtonSelector,
-  popupAvatarInput
+  popupAvatarInput,
+  popupEditAvatarSaveButton
 }

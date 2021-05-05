@@ -35,7 +35,6 @@ export default class Api {
 
     // Редактировать аватар пользователя
     editUserAvatar(urlAvatar) {
-        console.log(urlAvatar);
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
