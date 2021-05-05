@@ -22,17 +22,13 @@ import {
     popupZoomImgSelector,
     profileTitle,
     profileSubtitle,
-    cardsContainer,
     inputCardName,
     inputImg,
-
     profileAvatar,
     profileAvatarContainer,
-    popupEditAvatar,
     formAvatarElement,
     popupEditAvatarSelector,
     popupAvatarInput,
-    popupEditAvatarSaveButton,
     userId,
     popupDeleteCardSelector
 } from '../utils/constants.js';

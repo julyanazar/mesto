@@ -101,7 +101,6 @@ export {
   popupCardAddSelector,
   popupZoomImgSelector,
   userId,
-
   profileAvatar,
   profileAvatarContainer,
   popupEditAvatar,
