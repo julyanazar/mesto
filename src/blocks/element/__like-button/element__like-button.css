@@ -9,7 +9,6 @@
     box-sizing: border-box;
     border: none;
     padding: 0;
-    margin: 5px 5px 0 0;
     cursor: pointer;
     transition: opacity 0.3s ease;
 }

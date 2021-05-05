@@ -33,6 +33,20 @@ export default class Api {
             .catch(err => this._errorRequestResult(err));
     }
 
+    // Добавление новой карточки
+    addCard(name, link) {
+        return fetch(`${this._url}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        })
+            .then(res => this._checkRequestResult(res))
+            .catch(err => this._errorRequestResult(err));
+    }
+
     // Редактировать аватар пользователя
     editUserAvatar(urlAvatar) {
         return fetch(`${this._url}/users/me/avatar`, {

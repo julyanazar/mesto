@@ -81,7 +81,10 @@ const formAddSubmitHandler = (inputValues) => {
     cardsList.setItemPrepend(createCard(inputValues.name, inputValues.about, '#element'));
     popupAddCard.waitSaveButton('Сохранение...');
 
-    popupAddCard.close();
+    api.addCard(inputValues.name, inputValues.about)
+        .finally(() => {
+            popupAddCard.close();
+        })
 }
 
 // Обработчик формы редактирования аватара
