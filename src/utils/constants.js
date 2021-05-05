@@ -51,6 +51,8 @@ const elementImg = document.querySelector('.element__img');
 
 const inactiveButtonSaveClass = 'form__save-button_invalid';
 
+const userId = '65956243794258083065f7cb';
+
 const profileSelectors = {
   nameSelector: '.profile__title', 
   aboutSelector: '.profile__subtitle'
@@ -96,6 +98,7 @@ export {
   popupProfileInfoSelector,
   popupCardAddSelector,
   popupZoomImgSelector,
+  userId,
 
   profileAvatar,
   profileAvatarContainer,

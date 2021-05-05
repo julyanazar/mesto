@@ -21,6 +21,9 @@ import {
     popupZoomImgSelector,
     profileTitle,
     profileSubtitle,
+    cardsContainer,
+    inputCardName,
+    inputImg,
 
     profileAvatar,
     profileAvatarContainer,
@@ -28,7 +31,8 @@ import {
     formAvatarElement,
     popupEditAvatarSelector,
     popupAvatarInput,
-    popupEditAvatarSaveButton
+    popupEditAvatarSaveButton,
+    userId
 } from '../utils/constants.js';
 import './index.css';
 
@@ -77,14 +81,19 @@ const formEditSubmitHandler = (inputValues) => {
 }
 
 // Обработчик формы добавления новых карточек
-const formAddSubmitHandler = (inputValues) => {
-    cardsList.setItemPrepend(createCard(inputValues.name, inputValues.about, '#element'));
+const formAddSubmitHandler = () => {
+
     popupAddCard.waitSaveButton('Сохранение...');
 
-    api.addCard(inputValues.name, inputValues.about)
-        .finally(() => {
-            popupAddCard.close();
-        })
+    const nameCard = inputCardName.value;
+    const linkCard = inputImg.value;
+
+
+    api.addCard(nameCard, linkCard)
+        .then(data => {
+            cardsList.setItemPrepend(createCard(data, userId, '#element'));
+        });
+    popupAddCard.close();
 }
 
 // Обработчик формы редактирования аватара
@@ -109,16 +118,28 @@ const api = new Api({
 
 // Генерация изначальных карточек с сервера
 api.getInitialCards().then((data) => {
+    //generateInitialCards(data);
     cardsList.renderItems(data);
 });
 
+
 // Создание карточки
-function createCard(name, link, template) {
-    const card = new Card(name, link, template, {
+function createCard(item, userId, template) {
+    const card = new Card(item, userId, template, {
         handleCardClick: (name, link) => {
             imagePopup.open(name, link);
+        },
+
+        likeCardHandler: () => {
+            const likedCard = card.likedCard();
+            const resultApi = likedCard ? api.unlikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
+
+            resultApi.then(data => {
+                card.setLikes(data.likes) // Обновляем список лайкнувших карточку
+                card.renderLikes(); // Отрисовываем на клиенте
+            });
         }
-    });
+    }, item._id);
     const cardElement = card.createCardDomNode();
     return cardElement;
 }
@@ -126,10 +147,9 @@ function createCard(name, link, template) {
 // Рендер карточек
 const cardsList = new Section({
     renderer: (cardItem) => {
-        cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
+        cardsList.setItemAppend(createCard(cardItem, userId, '#element'));
     }
 }, cardListSelector);
-
 
 // Получаем с сервера данные пользователя
 api.getUserInfo().then((data => {

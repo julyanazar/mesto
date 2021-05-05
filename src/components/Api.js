@@ -47,6 +47,26 @@ export default class Api {
             .catch(err => this._errorRequestResult(err));
     }
 
+    // Поставить лайк
+    likeCard(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers,
+        })
+        .then(res => this._checkRequestResult(res))
+        .catch(err => this._errorRequestResult(err));
+    }
+
+    // Удалить лайк
+    unlikeCard(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+        .then(res => this._checkRequestResult(res))
+        .catch(err => this._errorRequestResult(err));
+    }
+
     // Редактировать аватар пользователя
     editUserAvatar(urlAvatar) {
         return fetch(`${this._url}/users/me/avatar`, {
