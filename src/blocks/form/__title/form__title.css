@@ -1,6 +1,6 @@
 .form__title {
     width: 358px;
-    margin: 0 0 54px;
+    margin: 0 0 20px;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 900;
     font-size: 24px;
@@ -12,7 +12,7 @@
 @media (max-width: 580px) {
     .form__title {
         width: 238px;
-        margin: 0 0 75px;
+        margin: 0 0 41px;
         font-size: 18px;
         line-height: 22px;
     }
