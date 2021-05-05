@@ -53,18 +53,28 @@ export default class Api {
             method: 'PUT',
             headers: this._headers,
         })
-        .then(res => this._checkRequestResult(res))
-        .catch(err => this._errorRequestResult(err));
+            .then(res => this._checkRequestResult(res))
+            .catch(err => this._errorRequestResult(err));
     }
 
     // Удалить лайк
-    unlikeCard(cardId) {
+    deleteLikeCard(cardId) {
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: this._headers,
         })
-        .then(res => this._checkRequestResult(res))
-        .catch(err => this._errorRequestResult(err));
+            .then(res => this._checkRequestResult(res))
+            .catch(err => this._errorRequestResult(err));
+    }
+
+    // Удалить карточку
+    removeCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+            .then(res => this._checkRequestResult(res))
+            .catch(err => this._errorRequestResult(err));
     }
 
     // Редактировать аватар пользователя

@@ -4,6 +4,7 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import Api from '../components/Api.js';
 
 import {
@@ -32,7 +33,8 @@ import {
     popupEditAvatarSelector,
     popupAvatarInput,
     popupEditAvatarSaveButton,
-    userId
+    userId,
+    popupDeleteCardSelector
 } from '../utils/constants.js';
 import './index.css';
 
@@ -107,6 +109,19 @@ const formEditAvatarSubmitHandler = () => {
         });
 }
 
+// Обработчик формы удаления карточки
+const formDeleteSubmitHandler = (evt, card) => {
+    evt.preventDefault();
+
+    api.removeCard(card.getIdCard())
+        .then(res => {
+            card.deleteCard();
+        })
+        .finally(() => {
+            popupDeleteCard.close();
+        })
+}
+
 // Экземпляр класса для работы с API
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-23',
@@ -118,7 +133,6 @@ const api = new Api({
 
 // Генерация изначальных карточек с сервера
 api.getInitialCards().then((data) => {
-    //generateInitialCards(data);
     cardsList.renderItems(data);
 });
 
@@ -132,12 +146,16 @@ function createCard(item, userId, template) {
 
         likeCardHandler: () => {
             const likedCard = card.likedCard();
-            const resultApi = likedCard ? api.unlikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
+            const resultApi = likedCard ? api.deleteLikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
 
             resultApi.then(data => {
-                card.setLikes(data.likes) // Обновляем список лайкнувших карточку
-                card.renderLikes(); // Отрисовываем на клиенте
+                card.setLikes(data.likes);
+                card.renderLikes();
             });
+        },
+
+        deleteCardHandler: () => {
+            popupDeleteCard.open(card);
         }
     }, item._id);
     const cardElement = card.createCardDomNode();
@@ -180,8 +198,14 @@ const popupEditProfile = new PopupWithForm(popupProfileInfoSelector, formEditSub
 const popupAddCard = new PopupWithForm(popupCardAddSelector, formAddSubmitHandler);
 const popupAvatarEdit = new PopupWithForm(popupEditAvatarSelector, formEditAvatarSubmitHandler);
 const imagePopup = new PopupWithImage(popupZoomImgSelector);
+const popupDeleteCard = new PopupWithSubmit(popupDeleteCardSelector,
+    (evt, card) => {
+        formDeleteSubmitHandler(evt, card)
+    }
+);
 
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 popupAvatarEdit.setEventListeners();
 imagePopup.setEventListeners();
+popupDeleteCard.setEventListeners();

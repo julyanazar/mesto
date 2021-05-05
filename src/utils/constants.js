@@ -53,8 +53,10 @@ const inactiveButtonSaveClass = 'form__save-button_invalid';
 
 const userId = '65956243794258083065f7cb';
 
+const popupDeleteCardSelector = '.popup_delete_card';
+
 const profileSelectors = {
-  nameSelector: '.profile__title', 
+  nameSelector: '.profile__title',
   aboutSelector: '.profile__subtitle'
 }
 
@@ -106,5 +108,6 @@ export {
   popupEditAvatarSelector,
   formAvatarElement,
   popupAvatarInput,
-  popupEditAvatarSaveButton
+  popupEditAvatarSaveButton,
+  popupDeleteCardSelector
 }

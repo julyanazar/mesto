@@ -1,14 +1,16 @@
 export default class Card {
-    constructor({ name, link, likes }, userId, cardSelector, { handleCardClick, likeCardHandler }, cardId) {
+    constructor({ name, link, likes, owner }, userId, cardSelector, { handleCardClick, likeCardHandler, deleteCardHandler }, cardId) {
         this._name = name;
         this._link = link;
         this._countLikes = likes;
+        this._ownerId = owner._id;
 
         this._userId = userId;
         this._cardSelector = cardSelector;
 
         this._handleCardClick = handleCardClick;
         this._likeCardHandler = likeCardHandler;
+        this._deleteCardHandler = deleteCardHandler;
 
         this._cardId = cardId;
     }
@@ -22,6 +24,10 @@ export default class Card {
 
         this._title = this._newItem.querySelector('.element__title');
         this._image = this._newItem.querySelector('.element__img');
+
+        if (this._ownerId !== this._userId) {
+            this._deleteButton.remove();
+        }
 
         this._title.textContent = this._name;
         this._image.src = this._link;
@@ -61,16 +67,6 @@ export default class Card {
 
     }
 
-    _deleteCardHandler = () => {
-        this._newItem.remove();
-    }
-
-    /* _likeCardHandler = () => {
-         this._newItem
-             .querySelector('.element__like-button')
-             .classList.toggle('element__like-button_active');
-     }*/
-
     // Получаем id карточки
     getIdCard() {
         return this._cardId;
@@ -89,7 +85,7 @@ export default class Card {
         this.showLikes(this._userId)
     }
 
-    // Функция изменения вида лайка
+    // Изменение состояния лайка
     showLikes() {
         if (this.likedCard(this._userId)) {
             this._likeButton.classList.add('element__like-button_active');
@@ -98,8 +94,13 @@ export default class Card {
         }
     }
 
-    // Функция установки количества лайков !!!в свойства карточки!!!
+    // Усстановка кол-ва лайков
     setLikes(listLikes) {
         this._countLikes = listLikes;
+    }
+
+    // Удалить карточку 
+    deleteCard() {
+        this._deleteButton.closest('.element').remove();
     }
 }
