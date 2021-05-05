@@ -5,7 +5,6 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Api from '../components/Api.js';
-import { initialCards } from '../utils/initial-сards.js';
 
 import {
     editButton,
@@ -28,7 +27,6 @@ import {
     popupEditAvatar,
     formAvatarElement,
     popupEditAvatarSelector,
-    popupCloseButtonSelector,
     popupAvatarInput,
     popupEditAvatarSaveButton
 } from '../utils/constants.js';
@@ -76,30 +74,25 @@ const formEditSubmitHandler = (inputValues) => {
             userInfo.setUserInfo(inputValues);
             popupEditProfile.close();
         })
-
-    // userInfo.setUserInfo(inputValues);
-    // popupEditProfile.close();
 }
 
 // Обработчик формы добавления новых карточек
 const formAddSubmitHandler = (inputValues) => {
     cardsList.setItemPrepend(createCard(inputValues.name, inputValues.about, '#element'));
+    popupAddCard.waitSaveButton('Сохранение...');
 
     popupAddCard.close();
 }
 
 // Обработчик формы редактирования аватара
 const formEditAvatarSubmitHandler = () => {
-
     profileAvatar.src = popupAvatarInput.value;
-
     popupAvatarEdit.waitSaveButton('Сохранение...');
 
     api.editUserAvatar(popupAvatarInput.value)
         .finally(() => {
             popupAvatarEdit.close();
         });
-
 }
 
 // Экземпляр класса для работы с API
@@ -113,15 +106,10 @@ const api = new Api({
 
 // Генерация изначальных карточек с сервера
 api.getInitialCards().then((data) => {
-    const cardsList = new Section({
-        items: data,
-        renderer: (cardItem) => {
-            cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
-        }
-    }, cardListSelector);
-    cardsList.renderItems();
+    cardsList.renderItems(data);
 });
 
+// Создание карточки
 function createCard(name, link, template) {
     const card = new Card(name, link, template, {
         handleCardClick: (name, link) => {
@@ -132,23 +120,20 @@ function createCard(name, link, template) {
     return cardElement;
 }
 
+// Рендер карточек
+const cardsList = new Section({
+    renderer: (cardItem) => {
+        cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
+    }
+}, cardListSelector);
+
+
 // Получаем с сервера данные пользователя
 api.getUserInfo().then((data => {
     profileTitle.textContent = data.name;
     profileSubtitle.textContent = data.about;
     profileAvatar.src = data.avatar;
 }))
-
-
-/*
-const cardsList = new Section({
-    items: initialCards,
-    renderer: (cardItem) => {
-        cardsList.setItemAppend(createCard(cardItem.name, cardItem.link, '#element'));
-    }
-}, cardListSelector);
-cardsList.renderItems();
-*/
 
 const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
 formList.forEach(

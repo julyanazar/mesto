@@ -18,6 +18,16 @@ const addCardButton = document.querySelector('.profile__add-button');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
+const popupEditAvatar = document.querySelector('.popup_edit_avatar');
+const popupEditAvatarSelector = '.popup_edit_avatar';
+
+const formAvatarElement = popupEditAvatar.querySelector('.form_avatar');
+const popupAvatarInput = popupEditAvatar.querySelector('.form__input-link-avatar');
+const popupEditAvatarSaveButton = popupEditAvatar.querySelector('.form__save-button');
+
+const profileAvatar = document.querySelector('.profile__avatar');
+const profileAvatarContainer = document.querySelector('.profile__avatar-container');
+
 const formInputName = document.querySelector('.form__input-name');
 const formInputNameSelector = '.profile__title';
 
@@ -40,15 +50,6 @@ const templateElement = document.querySelector('.template');
 const elementImg = document.querySelector('.element__img');
 
 const inactiveButtonSaveClass = 'form__save-button_invalid';
-
-const profileAvatar = document.querySelector('.profile__avatar')
-const profileAvatarContainer = document.querySelector('.profile__avatar-container')
-const popupEditAvatar = document.querySelector('.popup_edit_avatar');
-const popupEditAvatarSelector = '.popup_edit_avatar'
-const formAvatarElement = popupEditAvatar.querySelector('.form_avatar');
-const popupCloseButtonSelector = '.popup__close-button';
-const popupAvatarInput = popupEditAvatar.querySelector('.form__input-link-avatar');
-const popupEditAvatarSaveButton = popupEditAvatar.querySelector('.form__save-button');
 
 const profileSelectors = {
   nameSelector: '.profile__title', 
@@ -101,7 +102,6 @@ export {
   popupEditAvatar,
   popupEditAvatarSelector,
   formAvatarElement,
-  popupCloseButtonSelector,
   popupAvatarInput,
   popupEditAvatarSaveButton
 }
