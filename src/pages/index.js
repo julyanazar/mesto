@@ -90,7 +90,9 @@ const formAddSubmitHandler = () => {
     api.addCard(nameCard, linkCard)
         .then(data => {
             cardsList.setItemPrepend(createCard(data, userId, '#element'));
-        });
+        })
+        .catch(err => errorRequestResult(err));
+
     popupAddCard.close();
 }
 
@@ -113,6 +115,7 @@ const formDeleteSubmitHandler = (evt, card) => {
         .then(res => {
             card.deleteCard();
         })
+        .catch(err => errorRequestResult(err))
         .finally(() => {
             popupDeleteCard.close();
         })
@@ -128,9 +131,11 @@ const api = new Api({
 });
 
 // Генерация изначальных карточек с сервера
-api.getInitialCards().then((data) => {
-    cardsList.renderItems(data);
-});
+api.getInitialCards()
+    .then((data) => {
+        cardsList.renderItems(data);
+    })
+    .catch(err => errorRequestResult(err));
 
 
 // Создание карточки
@@ -144,10 +149,12 @@ function createCard(item, userId, template) {
             const likedCard = card.likedCard();
             const resultApi = likedCard ? api.deleteLikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
 
-            resultApi.then(data => {
-                card.setLikes(data.likes);
-                card.renderLikes();
-            });
+            resultApi
+                .then(data => {
+                    card.setLikes(data.likes);
+                    card.renderLikes();
+                })
+                .catch(err => errorRequestResult(err));
         },
 
         deleteCardHandler: () => {
@@ -166,11 +173,13 @@ const cardsList = new Section({
 }, cardListSelector);
 
 // Получаем с сервера данные пользователя
-api.getUserInfo().then((data => {
-    profileTitle.textContent = data.name;
-    profileSubtitle.textContent = data.about;
-    profileAvatar.src = data.avatar;
-}))
+api.getUserInfo()
+    .then((data => {
+        profileTitle.textContent = data.name;
+        profileSubtitle.textContent = data.about;
+        profileAvatar.src = data.avatar;
+    }))
+    .catch(data => {errorRequestResult(data)});
 
 const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
 formList.forEach(
@@ -179,6 +188,10 @@ formList.forEach(
             evt.preventDefault();
         });
     });
+
+function errorRequestResult(err) {
+    console.log(err);
+}
 
 const userInfo = new UserInfo(profileSelectors);
 

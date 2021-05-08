@@ -9,14 +9,12 @@ export default class Api {
     getInitialCards() {
         return fetch(`${this._url}/cards`, { headers: this._headers })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResultr(err));
     }
 
     // Получить данные пользователя
     getUserInfo() {
         return fetch(`${this._url}/users/me`, { headers: this._headers })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResultr(err));
     }
 
     // Редактировать данные пользователя
@@ -30,7 +28,6 @@ export default class Api {
             })
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     // Добавление новой карточки
@@ -44,7 +41,6 @@ export default class Api {
             })
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     // Поставить лайк
@@ -54,7 +50,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     // Удалить лайк
@@ -64,7 +59,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     // Удалить карточку
@@ -74,7 +68,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     // Редактировать аватар пользователя
@@ -87,7 +80,6 @@ export default class Api {
             })
         })
             .then(res => this._checkRequestResult(res))
-            .catch(err => this._errorRequestResult(err));
     }
 
     _checkRequestResult(res) {
@@ -95,10 +87,6 @@ export default class Api {
             return res.json();
         }
         return Promise.reject(`Ошибка! ${res.status}`);
-    }
-
-    _errorRequestResult(err) {
-        console.log(err);
     }
 
 }
