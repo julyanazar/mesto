@@ -5,16 +5,24 @@ export default class Api {
         this._headers = this._options.headers;
     }
 
+    getInitialData() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+    }
+
     // Получить доступные карточки
     getInitialCards() {
-        return fetch(`${this._url}/cards`, { headers: this._headers })
-            .then(res => this._checkRequestResult(res))
+        return fetch(`${this._url}/cards`, {
+            headers: this._headers
+        })
+            .then(res => this._checkRequestResult(res));
     }
 
     // Получить данные пользователя
     getUserInfo() {
-        return fetch(`${this._url}/users/me`, { headers: this._headers })
-            .then(res => this._checkRequestResult(res))
+        return fetch(`${this._url}/users/me`, {
+            headers: this._headers
+        })
+            .then(res => this._checkRequestResult(res));
     }
 
     // Редактировать данные пользователя
@@ -27,7 +35,7 @@ export default class Api {
                 about: about
             })
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     // Добавление новой карточки
@@ -40,7 +48,7 @@ export default class Api {
                 link: link
             })
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     // Поставить лайк
@@ -49,7 +57,7 @@ export default class Api {
             method: 'PUT',
             headers: this._headers,
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     // Удалить лайк
@@ -58,7 +66,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     // Удалить карточку
@@ -67,7 +75,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     // Редактировать аватар пользователя
@@ -79,7 +87,7 @@ export default class Api {
                 avatar: urlAvatar
             })
         })
-            .then(res => this._checkRequestResult(res))
+            .then(res => this._checkRequestResult(res));
     }
 
     _checkRequestResult(res) {

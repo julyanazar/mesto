@@ -1,3 +1,4 @@
+let userId;
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -29,7 +30,6 @@ import {
     formAvatarElement,
     popupEditAvatarSelector,
     popupAvatarInput,
-    userId,
     popupDeleteCardSelector
 } from '../utils/constants.js';
 import './index.css';
@@ -64,16 +64,12 @@ profileAvatarContainer.addEventListener('click', function () {
 
 // Обработчик формы редактироваия профиля
 const formEditSubmitHandler = (inputValues) => {
-    const info = {
-        name: formInputName.value,
-        about: formInputAbout.value
-    }
 
     popupEditProfile.waitSaveButton('Сохранение...');
 
-    api.editUserInfo(info.name, info.about)
+    api.editUserInfo(inputValues.name, inputValues.about)
         .finally(() => {
-            userInfo.setUserInfo(inputValues);
+            userInfo.setUserInfo(inputValues.name, inputValues.about);
             popupEditProfile.close();
         })
 }
@@ -130,14 +126,6 @@ const api = new Api({
     }
 });
 
-// Генерация изначальных карточек с сервера
-api.getInitialCards()
-    .then((data) => {
-        cardsList.renderItems(data);
-    })
-    .catch(err => errorRequestResult(err));
-
-
 // Создание карточки
 function createCard(item, userId, template) {
     const card = new Card(item, userId, template, {
@@ -165,21 +153,22 @@ function createCard(item, userId, template) {
     return cardElement;
 }
 
+api.getInitialData()
+    .then((arg) => {
+        const [dataUserInfo, dataCards] = arg;
+        userInfo.setUserInfo(dataUserInfo.name, dataUserInfo.about);
+        userInfo.setAvatar(dataUserInfo.avatar);
+        userId = dataUserInfo._id
+        cardsList.renderItems(dataCards);
+    })
+    .catch(data => { errorRequestResult(data) });
+
 // Рендер карточек
 const cardsList = new Section({
     renderer: (cardItem) => {
         cardsList.setItemAppend(createCard(cardItem, userId, '#element'));
     }
 }, cardListSelector);
-
-// Получаем с сервера данные пользователя
-api.getUserInfo()
-    .then((data => {
-        profileTitle.textContent = data.name;
-        profileSubtitle.textContent = data.about;
-        profileAvatar.src = data.avatar;
-    }))
-    .catch(data => {errorRequestResult(data)});
 
 const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
 formList.forEach(
