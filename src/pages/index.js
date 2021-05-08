@@ -21,15 +21,9 @@ import {
     popupProfileInfoSelector,
     popupCardAddSelector,
     popupZoomImgSelector,
-    profileTitle,
-    profileSubtitle,
-    inputCardName,
-    inputImg,
-    profileAvatar,
     profileAvatarContainer,
     formAvatarElement,
     popupEditAvatarSelector,
-    popupAvatarInput,
     popupDeleteCardSelector
 } from '../utils/constants.js';
 import './index.css';
@@ -76,15 +70,11 @@ const formEditSubmitHandler = (inputValues) => {
 }
 
 // Обработчик формы добавления новых карточек
-const formAddSubmitHandler = () => {
+const formAddSubmitHandler = (inputValues) => {
 
     popupAddCard.waitSaveButton('Сохранение...');
 
-    const nameCard = inputCardName.value;
-    const linkCard = inputImg.value;
-
-
-    api.addCard(nameCard, linkCard)
+    api.addCard(inputValues.name, inputValues.about)
         .then(data => {
             cardsList.setItemPrepend(createCard(data, userId, '#element'));
             popupAddCard.close();
@@ -93,12 +83,13 @@ const formAddSubmitHandler = () => {
 }
 
 // Обработчик формы редактирования аватара
-const formEditAvatarSubmitHandler = () => {
-    profileAvatar.src = popupAvatarInput.value;
+const formEditAvatarSubmitHandler = (inputValues) => {
+    
     popupAvatarEdit.waitSaveButton('Сохранение...');
 
-    api.editUserAvatar(popupAvatarInput.value)
+    api.editUserAvatar(inputValues['avatar-input'])
         .then(() => {
+            userInfo.setAvatar(inputValues['avatar-input']);
             popupAvatarEdit.close();
         })
         .catch(err => errorRequestResult(err));

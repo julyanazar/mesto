@@ -1,5 +1,3 @@
-
-
 const popupsAll = document.querySelectorAll('.popup');
 
 const popupProfileInfo = document.querySelector('.popup_profile_info');
@@ -53,8 +51,6 @@ const elementImg = document.querySelector('.element__img');
 
 const inactiveButtonSaveClass = 'form__save-button_invalid';
 
-//const userId = '65956243794258083065f7cb';
-
 const popupDeleteCardSelector = '.popup_delete_card';
 
 const profileSelectors = {
@@ -103,7 +99,6 @@ export {
   popupProfileInfoSelector,
   popupCardAddSelector,
   popupZoomImgSelector,
-
   profileAvatar,
   profileAvatarContainer,
   popupEditAvatar,
