@@ -68,10 +68,11 @@ const formEditSubmitHandler = (inputValues) => {
     popupEditProfile.waitSaveButton('Сохранение...');
 
     api.editUserInfo(inputValues.name, inputValues.about)
-        .finally(() => {
+        .then(() => {
             userInfo.setUserInfo(inputValues.name, inputValues.about);
             popupEditProfile.close();
         })
+        .catch(err => errorRequestResult(err));
 }
 
 // Обработчик формы добавления новых карточек
@@ -86,10 +87,9 @@ const formAddSubmitHandler = () => {
     api.addCard(nameCard, linkCard)
         .then(data => {
             cardsList.setItemPrepend(createCard(data, userId, '#element'));
+            popupAddCard.close();
         })
         .catch(err => errorRequestResult(err));
-
-    popupAddCard.close();
 }
 
 // Обработчик формы редактирования аватара
@@ -98,9 +98,10 @@ const formEditAvatarSubmitHandler = () => {
     popupAvatarEdit.waitSaveButton('Сохранение...');
 
     api.editUserAvatar(popupAvatarInput.value)
-        .finally(() => {
+        .then(() => {
             popupAvatarEdit.close();
-        });
+        })
+        .catch(err => errorRequestResult(err));
 }
 
 // Обработчик формы удаления карточки
@@ -110,11 +111,9 @@ const formDeleteSubmitHandler = (evt, card) => {
     api.removeCard(card.getIdCard())
         .then(res => {
             card.deleteCard();
-        })
-        .catch(err => errorRequestResult(err))
-        .finally(() => {
             popupDeleteCard.close();
         })
+        .catch(err => errorRequestResult(err));
 }
 
 // Экземпляр класса для работы с API
