@@ -57,7 +57,8 @@ const popupDeleteCardSelector = '.popup_delete_card';
 
 const profileSelectors = {
   nameSelector: '.profile__title',
-  aboutSelector: '.profile__subtitle'
+  aboutSelector: '.profile__subtitle',
+  avatarSelector: '.profile__avatar'
 }
 
 const configValidation = {
