@@ -60,7 +60,7 @@ module.exports = {
     plugins: [ //добавляем массив
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/pages/index.html'
+            template: './src/index.html'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin() // подключение плагина для объединения файлов css
