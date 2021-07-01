@@ -114,6 +114,8 @@ const api = new Api({
         authorization: 'e56d1e25-39ae-447a-8210-54350a3c4955',
         'Content-Type': 'application/json'
     }
+
+    
 });
 
 // Создание карточки
